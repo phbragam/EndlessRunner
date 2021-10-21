@@ -112,6 +112,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UI",
+            "id": "c64f9720-27a4-4fa4-ad5a-0a1d6a012c78",
+            "actions": [
+                {
+                    "name": "Submit",
+                    "type": "Button",
+                    "id": "922b0a7d-69d7-4f97-b414-a7d0687e6cf3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e98e6de7-6cea-4cd9-877e-6c8b9acd69a0",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
