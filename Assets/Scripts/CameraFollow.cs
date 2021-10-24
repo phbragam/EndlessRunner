@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    private Transform player;
+    [SerializeField] Transform player;
     Vector3 offset;
 
     // Start is called before the first frame update

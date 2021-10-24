@@ -5,8 +5,11 @@ public class PlayerMovement : MonoBehaviour
 {
     bool alive = true;
 
-    [SerializeField] private float speed = 5f;
-    public Rigidbody rb;
+    public float speed = 5f;
+    [SerializeField] public Rigidbody rb;
+
+    public float speedIncreasePerPoint = .1f;
+
 
     private void FixedUpdate()
     {

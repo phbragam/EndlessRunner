@@ -10,6 +10,7 @@ public class PlayerInputHandler : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] private float jumpForce;
     [SerializeField] private float sideForce;
+    [SerializeField] LayerMask groundMask;
 
     private void Awake()
     {
@@ -40,9 +41,15 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext context)
     {
+
+        float height = GetComponent<Collider>().bounds.size.y;
+        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, (height / 2) + 0.1f, groundMask);
         Debug.Log(context);
         Debug.Log("Pulou");
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        if (isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
 
     private void OnDisable()

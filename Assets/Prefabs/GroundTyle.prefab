@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 982013934564833171}
   - component: {fileID: 6096999467091457155}
   - component: {fileID: 5481812155149991394}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,6 +167,8 @@ GameObject:
   - component: {fileID: 5873771167133408599}
   - component: {fileID: 6351944758000617007}
   - component: {fileID: 7968385409216949738}
+  - component: {fileID: 4839276999516489697}
+  - component: {fileID: 650183725615470141}
   m_Layer: 0
   m_Name: GroundTyle
   m_TagString: Untagged
@@ -218,7 +220,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a2c10708228404499311bf846743a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4839276999516489697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7456808148869549930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd9943bb691a57f4da92851e604acb70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 6081129526358317644, guid: 83227c67c0b0a75429baf5a9ffc55b60, type: 3}
+--- !u!114 &650183725615470141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7456808148869549930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b7f5c0d61cf814aaa41197a47ff3a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 2733983344329025851, guid: 40d823bce0461464485b6f1d1c446a7a, type: 3}
+  tallObstaclePrefab: {fileID: 2733983344329025851, guid: 9b07f95f4bf7d8e4bacd0f37cac347cc, type: 3}
+  tallObstacleChance: 0.1
   obstacleSpawn:
   - {fileID: 5546216185282770811}
   - {fileID: 7115881811264972034}
