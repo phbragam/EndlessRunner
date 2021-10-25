@@ -25,8 +25,15 @@ public class CoinScript : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void Awake()
+    {
+
+    }
+
     private void Update()
     {
         transform.Rotate(0, 0, turnSpeed * Time.deltaTime);
     }
+
+
 }
