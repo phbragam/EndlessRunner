@@ -42,6 +42,6 @@ public sealed class ObstacleSpawner : MonoBehaviour
                 break;
         }
 
-        Instantiate(obstacleToSpawn, spawnPoint, Quaternion.identity, transform);
+        //Instantiate(obstacleToSpawn, spawnPoint, Quaternion.identity, transform);
     }
 }

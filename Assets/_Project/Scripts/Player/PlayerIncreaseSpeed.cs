@@ -4,8 +4,8 @@ public sealed class PlayerIncreaseSpeed : MonoBehaviour
 {
     // criar scriptable object da speed;
     [SerializeField] private FloatValue _speedData;
-
-    [SerializeField] private float SpeedIncreasePerPoint ;
+    [SerializeField] private float _maxSpeed;
+    [SerializeField] private float SpeedIncreasePerPoint;
 
     //private void Awake()
     //{
@@ -24,6 +24,13 @@ public sealed class PlayerIncreaseSpeed : MonoBehaviour
 
     private void IncreaseSpeed()
     {
-        _speedData.floatValue += SpeedIncreasePerPoint;
+        if (_speedData.floatValue <= _maxSpeed)
+        {
+            _speedData.floatValue += SpeedIncreasePerPoint;
+        }
+        else
+        {
+            CoinObtained.OnCoinObtainedByPlayer -= IncreaseSpeed;
+        }
     }
 }

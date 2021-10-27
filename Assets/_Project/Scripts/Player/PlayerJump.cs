@@ -7,12 +7,15 @@ public sealed class PlayerJump : MonoBehaviour
     [SerializeField] private LayerMask _groundMask;
 
     private PrototypePlayerInputActions _prototypePlayerInputActions;
+    
+    
     private Rigidbody _rb;
 
     private void OnEnable()
     {
         PlayerDieScript.OnPlayerDied += DisableJump;
         PlayerDieScript.OnPlayerDied += ResetJumpForce;
+
     }
 
     private void OnDisable()
@@ -36,13 +39,34 @@ public sealed class PlayerJump : MonoBehaviour
     {
 
         float height = GetComponent<Collider>().bounds.size.y;
-        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, (height / 2) + 0.1f, _groundMask);
+        Debug.Log(height);
+        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, (height / 2) + 1.1f, _groundMask);
+        //Debug.Log(transform.position);
+        //Debug.Log(transform.position + Vector3.down * ((height / 2) + .1f));
 
+        Debug.DrawRay(transform.position, Vector3.down, Color.yellow, 10f);
+
+        //Debug.Log(isGrounded);
         if (isGrounded)
         {
             _rb.AddForce(Vector3.up * _jumpForceData.floatValue, ForceMode.Impulse);
         }
 
+    }
+
+    private void Update()
+    {
+        float height = GetComponent<Collider>().bounds.size.y;
+        bool isGrounded = Physics.Raycast(transform.position + Vector3.up, Vector3.down, (height / 2) + .1f, _groundMask);
+
+        if (isGrounded)
+        {
+            Debug.Log("Grounded");
+        }
+        else
+        {
+            Debug.Log("Not Grounded");
+        }
     }
 
     private void DisableJump()
