@@ -15,6 +15,7 @@ public class ObstacleSpawner : MonoBehaviour
         //SpawnObstacles();
     }
 
+    // adicionar object pooling
     public void SpawnObstacles()
     {
         GameObject obstacleToSpawn = obstaclePrefab;

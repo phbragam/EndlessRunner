@@ -1,36 +1,25 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    bool alive = true;
-    
     public float speed = 5f;
     public float speedIncreasePerPoint = .1f;
 
-    private const float laneDistance = 3.3f;
+    [SerializeField] private float laneDistance = 3.3f;
     public enum Lane { Left, Center, Right }
     Lane targetLane;
+
+    PlayerDieScript playerDieScript;
 
     private void Awake()
     {
         targetLane = Lane.Center;
-    }
-
-    private void FixedUpdate()
-    {
-        if (!alive) return;
-
+        playerDieScript = GetComponent<PlayerDieScript>();
     }
 
     private void Update()
     {
-        if (transform.position.y <= -5)
-        {
-            Die();
-        }
-
         if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
         {
             MoveLane(false);
@@ -40,7 +29,11 @@ public class PlayerMovement : MonoBehaviour
         {
             MoveLane(true);
         }
+    }
 
+    private void FixedUpdate()
+    {
+        if (!playerDieScript.alive) return;
 
         Vector3 targetPos = SwitchTargetPosition();
         Move(targetPos);
@@ -72,7 +65,6 @@ public class PlayerMovement : MonoBehaviour
                     break;
             }
         }
-        //Debug.Log(targetLane);
     }
 
     private Vector3 SwitchTargetPosition()
@@ -95,26 +87,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move(Vector3 targetPos)
     {
-        if (alive)
+        if (playerDieScript.alive)
         {
             Vector3 moveVector = Vector3.zero;
+            // moveVector.x pode ser 0, 1 ou -1
             moveVector.x = (targetPos - transform.position).normalized.x * speed;
-            moveVector.y = transform.position.y;
             moveVector.z = speed;
-            transform.Translate(moveVector * Time.deltaTime);
-            //Debug.Log("move vector: " + moveVector);
+            transform.Translate(moveVector * Time.fixedDeltaTime);
         }
-    }
-
-    public void Die()
-    {
-        alive = false;
-
-        Invoke("ReloadScene", 1f);
-    }
-
-    private void ReloadScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

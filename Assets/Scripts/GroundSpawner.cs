@@ -22,6 +22,7 @@ public class GroundSpawner : MonoBehaviour
         }
     }
 
+    // adicionar object pooling
     public void SpawnTile(bool spawnItems)
     {
         GameObject temp = Instantiate(groudTile, nextSpawnPoint, Quaternion.identity);

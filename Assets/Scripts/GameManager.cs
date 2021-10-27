@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     int score;
     public static GameManager inst;
 
+    // mover texto pra ui que vai escutar o evento de mudança na pontuação
     [SerializeField] Text scoreText;
 
     [SerializeField] PlayerMovement playerMovement;
@@ -23,5 +24,9 @@ public class GameManager : MonoBehaviour
     {
         inst = this;
     }
+
+    // cena vai ser recarregada na morte aqui
+    // manager vai escutar a morte do jogador e recarregar a cena
+    // criar outro manager para salvar o dado do leaderboard
 
 }

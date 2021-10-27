@@ -15,6 +15,8 @@ public class CoinSpawner : MonoBehaviour
         //SpawnCoins();
     }
 
+
+    // adicionar object pooling
     public void SpawnCoins()
     {
         int coinsToSpawn = Random.Range(0, 5);
@@ -24,23 +26,19 @@ public class CoinSpawner : MonoBehaviour
             GameObject temp = Instantiate(coinPrefab, transform);
             temp.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
             int lane = Random.Range(0, 3);
-            Debug.Log(lane);
             switch (lane)
             {
                 case (0):
                     temp.transform.position = new Vector3(leftX, temp.transform.position.y, temp.transform.position.z);
-                    Debug.Log("entrou");
-                    Debug.Log(transform.position);
+                    //Debug.Log(transform.position);
                     break;
                 case (1):
                     temp.transform.position = new Vector3(centerX, temp.transform.position.y, temp.transform.position.z);
-                    Debug.Log("entrou");
-                    Debug.Log(transform.position);
+                    //Debug.Log(transform.position);
                     break;
                 case (2):
                     temp.transform.position = new Vector3(rightX, temp.transform.position.y, temp.transform.position.z);
-                    Debug.Log("entrou");
-                    Debug.Log(transform.position);
+                    //Debug.Log(transform.position);
                     break;
             }
         }

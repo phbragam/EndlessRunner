@@ -7,6 +7,7 @@ public class CoinScript : MonoBehaviour
 {
     [SerializeField] public float turnSpeed = 90f;
 
+    // adicionar object pooling
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Obstacle>())
@@ -20,14 +21,10 @@ public class CoinScript : MonoBehaviour
             return;
         }
 
+        // emitir evento de pontuação aqui
         GameManager.inst.IncrementScore();
 
         Destroy(gameObject);
-    }
-
-    private void Awake()
-    {
-
     }
 
     private void Update()

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    PlayerMovement playerMovement;
+    PlayerDieScript playerDieScript;
     PrototypePlayerInputActions prototypePlayerInputActions;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerMovement = FindObjectOfType<PlayerMovement>();
-        prototypePlayerInputActions = FindObjectOfType<PlayerInputHandler>().prototypePlayerInputActions;
+        playerDieScript = FindObjectOfType<PlayerDieScript>();
+        prototypePlayerInputActions = FindObjectOfType<PlayerJump>().prototypePlayerInputActions;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -19,7 +19,7 @@ public class Obstacle : MonoBehaviour
         if (collision.gameObject.GetComponent<PlayerReference>())
         {
             prototypePlayerInputActions.Player.Disable();
-            playerMovement.Die();
+            playerDieScript.Die();
         }
     }
 }

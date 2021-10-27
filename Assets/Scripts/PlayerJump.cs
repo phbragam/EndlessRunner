@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputHandler : MonoBehaviour
+//mudar para PlayerJump
+public class PlayerJump : MonoBehaviour
 {
     public PrototypePlayerInputActions prototypePlayerInputActions;
     private Rigidbody rb;
     [SerializeField] private float jumpForce;
+    [SerializeField] private float verticalVelocity;
+
     [SerializeField] LayerMask groundMask;
 
     private void Awake()
@@ -19,21 +22,6 @@ public class PlayerInputHandler : MonoBehaviour
         prototypePlayerInputActions.Player.Enable();
 
         prototypePlayerInputActions.Player.Jump.started += Jump;
-        //prototypePlayerInputActions.Player.MoveRight.started += Right;
-        //prototypePlayerInputActions.Player.MoveLeft.started += Left;
-    }
-
-    private void Right(InputAction.CallbackContext context)
-    {
-        Debug.Log(context);
-        Debug.Log("Right");
-    }
-
-
-    private void Left(InputAction.CallbackContext context)
-    {
-        Debug.Log(context);
-        Debug.Log("Left");
     }
 
     private void Jump(InputAction.CallbackContext context)
