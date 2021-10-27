@@ -1,15 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public sealed class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5f;
-
-    [SerializeField] private float laneDistance = 3.3f;
     public enum Lane { Left, Center, Right }
-    Lane targetLane;
 
-    PlayerMovement playerMovement;
+    [SerializeField] private float _laneDistance = 3.3f;
+
+    public float Speed = 5f;
+    private PlayerMovement _playerMovement;
+    private Lane TargetLane;
 
     private void OnEnable()
     {
@@ -23,8 +23,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        playerMovement = this;
-        targetLane = Lane.Center;
+        _playerMovement = this;
+        TargetLane = Lane.Center;
     }
 
     private void Update()
@@ -50,25 +50,25 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!goingRight)
         {
-            switch (targetLane)
+            switch (TargetLane)
             {
                 case (Lane.Right):
-                    targetLane = Lane.Center;
+                    TargetLane = Lane.Center;
                     break;
                 case (Lane.Center):
-                    targetLane = Lane.Left;
+                    TargetLane = Lane.Left;
                     break;
             }
         }
         else
         {
-            switch (targetLane)
+            switch (TargetLane)
             {
                 case (Lane.Left):
-                    targetLane = Lane.Center;
+                    TargetLane = Lane.Center;
                     break;
                 case (Lane.Center):
-                    targetLane = Lane.Right;
+                    TargetLane = Lane.Right;
                     break;
             }
         }
@@ -77,15 +77,15 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 SwitchTargetPosition()
     {
         Vector3 targetPosition = transform.position.z * Vector3.forward;
-        switch (targetLane)
+        switch (TargetLane)
         {
             case (Lane.Right):
-                targetPosition += Vector3.right * laneDistance;
+                targetPosition += Vector3.right * _laneDistance;
                 break;
             case (Lane.Center):
                 break;
             case (Lane.Left):
-                targetPosition += Vector3.left * laneDistance;
+                targetPosition += Vector3.left * _laneDistance;
                 break;
         }
 
@@ -96,13 +96,13 @@ public class PlayerMovement : MonoBehaviour
     {
             Vector3 moveVector = Vector3.zero;
             // moveVector.x pode ser 0, 1 ou -1
-            moveVector.x = (targetPos - transform.position).normalized.x * speed;
-            moveVector.z = speed;
+            moveVector.x = (targetPos - transform.position).normalized.x * Speed;
+            moveVector.z = Speed;
             transform.Translate(moveVector * Time.fixedDeltaTime);
     }
 
     void DisableMovement()
     {
-        playerMovement.enabled = false;
+        _playerMovement.enabled = false;
     }
 }

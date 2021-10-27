@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIncreaseSpeed : MonoBehaviour
+public sealed class PlayerIncreaseSpeed : MonoBehaviour
 {
     // criar scriptable object da speed;
-    public float speedIncreasePerPoint = .1f;
-    [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] PlayerMovement _playerMovement;
+
+    public float SpeedIncreasePerPoint = .1f;
 
     private void Awake()
     {
-        playerMovement = GetComponent<PlayerMovement>();
+        _playerMovement = GetComponent<PlayerMovement>();
     }
 
     private void OnEnable()
@@ -23,8 +22,8 @@ public class PlayerIncreaseSpeed : MonoBehaviour
         CoinObtained.OnCoinObtainedByPlayer -= IncreaseSpeed;
     }
 
-    void IncreaseSpeed()
+    private void IncreaseSpeed()
     {
-        playerMovement.speed += speedIncreasePerPoint;
+        _playerMovement.Speed += SpeedIncreasePerPoint;
     }
 }

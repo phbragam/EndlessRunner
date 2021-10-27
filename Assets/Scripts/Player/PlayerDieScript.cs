@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
-using UnityEngine.SceneManagement;
+using UnityEngine;
 
-public class PlayerDieScript : MonoBehaviour
+public sealed class PlayerDieScript : MonoBehaviour
 {
     public static event Action OnPlayerDied;
 

@@ -1,16 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-//mudar para PlayerJump
-public class PlayerJump : MonoBehaviour
+public sealed class PlayerJump : MonoBehaviour
 {
-    public PrototypePlayerInputActions prototypePlayerInputActions;
-    private Rigidbody rb;
-    [SerializeField] private float jumpForce;
-    [SerializeField] LayerMask groundMask;
+    [SerializeField] private float _jumpForce;
+    [SerializeField] private LayerMask _groundMask;
+
+    private PrototypePlayerInputActions _prototypePlayerInputActions;
+    private Rigidbody _rb;
 
     private void OnEnable()
     {
@@ -19,34 +16,32 @@ public class PlayerJump : MonoBehaviour
 
     private void OnDisable()
     {
-        prototypePlayerInputActions.Player.Disable();
+        _prototypePlayerInputActions.Player.Disable();
         PlayerDieScript.OnPlayerDied -= DisableJump;
     }
 
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
 
-        prototypePlayerInputActions = new PrototypePlayerInputActions();
-        prototypePlayerInputActions.Player.Enable();
-        prototypePlayerInputActions.Player.Jump.started += Jump;
+        _prototypePlayerInputActions = new PrototypePlayerInputActions();
+        _prototypePlayerInputActions.Player.Enable();
+        _prototypePlayerInputActions.Player.Jump.started += Jump;
     }
 
     private void Jump(InputAction.CallbackContext context)
     {
 
         float height = GetComponent<Collider>().bounds.size.y;
-        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, (height / 2) + 0.1f, groundMask);
-        Debug.Log(context);
-        Debug.Log("Pulou");
+        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, (height / 2) + 0.1f, _groundMask);
         if (isGrounded)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
         }
     }
 
-    void DisableJump()
+    private void DisableJump()
     {
         GetComponent<PlayerJump>().enabled = false;
     }

@@ -843,8 +843,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b45ec91cc0efea4fbcdd5383ddb67f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
-  laneDistance: 3.3
+  _laneDistance: 3.3
+  Speed: 15
 --- !u!114 &1590158158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -857,8 +857,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8afd6822e3227444bab86a8787d92caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 15
-  groundMask:
+  _jumpForce: 15
+  _groundMask:
     serializedVersion: 2
     m_Bits: 64
 --- !u!114 &1590158159
@@ -897,5 +897,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7c5f2915ef8c44baf3f6c2265ba93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedIncreasePerPoint: 0.5
-  playerMovement: {fileID: 0}
+  _playerMovement: {fileID: 0}
+  SpeedIncreasePerPoint: 0.1
