@@ -248,10 +248,9 @@ MonoBehaviour:
   _obstaclePrefab: {fileID: 2733983344329025851, guid: 40d823bce0461464485b6f1d1c446a7a, type: 3}
   _tallObstaclePrefab: {fileID: 2733983344329025851, guid: 9b07f95f4bf7d8e4bacd0f37cac347cc, type: 3}
   _tallObstacleChance: 0.2
-  _obstacleSpawnTransformArray:
-  - {fileID: 5546216185282770811}
-  - {fileID: 7115881811264972034}
-  - {fileID: 5820540798334086315}
+  _obstacleSpawnTransformLeft: {fileID: 5546216185282770811}
+  _obstacleSpawnTransformCenter: {fileID: 7115881811264972034}
+  _obstacleSpawnTransformRight: {fileID: 5820540798334086315}
 --- !u!1 &8300205232397690870
 GameObject:
   m_ObjectHideFlags: 0

@@ -259,7 +259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729c046cca1d17a48a866e468c8a3cf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreText: {fileID: 0}
+  _scoreText: {fileID: 393636654}
+  _actualScoreData: {fileID: 11400000, guid: db3054cecab48564baeeea5e082586c0, type: 2}
 --- !u!1 &411099271
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _laneDistance: 3.3
-  Speed: 15
+  _speedData: {fileID: 11400000, guid: 01b24c1c62a09d3489331cdbf4a7aaec, type: 2}
 --- !u!114 &1590158158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,7 +845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8afd6822e3227444bab86a8787d92caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 15
+  _jumpForceData: {fileID: 11400000, guid: 0700fc48b297887428c37c20e212f0c8, type: 2}
   _groundMask:
     serializedVersion: 2
     m_Bits: 64
@@ -884,5 +885,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7c5f2915ef8c44baf3f6c2265ba93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerMovement: {fileID: 0}
-  SpeedIncreasePerPoint: 0.1
+  _speedData: {fileID: 11400000, guid: 01b24c1c62a09d3489331cdbf4a7aaec, type: 2}
+  SpeedIncreasePerPoint: 1

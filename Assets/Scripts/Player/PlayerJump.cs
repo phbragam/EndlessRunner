@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public sealed class PlayerJump : MonoBehaviour
 {
-    [SerializeField] private float _jumpForce;
+    [SerializeField] private FloatValue _jumpForceData;
     [SerializeField] private LayerMask _groundMask;
 
     private PrototypePlayerInputActions _prototypePlayerInputActions;
@@ -12,12 +12,14 @@ public sealed class PlayerJump : MonoBehaviour
     private void OnEnable()
     {
         PlayerDieScript.OnPlayerDied += DisableJump;
+        PlayerDieScript.OnPlayerDied += ResetJumpForce;
     }
 
     private void OnDisable()
     {
         _prototypePlayerInputActions.Player.Disable();
         PlayerDieScript.OnPlayerDied -= DisableJump;
+        PlayerDieScript.OnPlayerDied -= ResetJumpForce;
     }
 
 
@@ -38,7 +40,7 @@ public sealed class PlayerJump : MonoBehaviour
 
         if (isGrounded)
         {
-            _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+            _rb.AddForce(Vector3.up * _jumpForceData.floatValue, ForceMode.Impulse);
         }
 
     }
@@ -46,5 +48,10 @@ public sealed class PlayerJump : MonoBehaviour
     private void DisableJump()
     {
         GetComponent<PlayerJump>().enabled = false;
+    }
+
+    private void ResetJumpForce()
+    {
+        _jumpForceData.floatValue = _jumpForceData.defaultFloatValue;
     }
 }

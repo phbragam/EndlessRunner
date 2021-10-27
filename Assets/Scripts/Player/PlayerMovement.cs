@@ -6,19 +6,21 @@ public sealed class PlayerMovement : MonoBehaviour
     public enum Lane { Left, Center, Right }
 
     [SerializeField] private float _laneDistance = 3.3f;
+    [SerializeField] private FloatValue _speedData;
 
-    public float Speed = 5f;
     private PlayerMovement _playerMovement;
     private Lane TargetLane;
 
     private void OnEnable()
     {
         PlayerDieScript.OnPlayerDied += DisableMovement;
+        PlayerDieScript.OnPlayerDied += ResetSpeed;
     }
 
     private void OnDisable()
     {
         PlayerDieScript.OnPlayerDied -= DisableMovement;
+        PlayerDieScript.OnPlayerDied -= ResetSpeed;
     }
 
     private void Awake()
@@ -105,13 +107,18 @@ public sealed class PlayerMovement : MonoBehaviour
     {
             Vector3 moveVector = Vector3.zero;
             // moveVector.x pode ser 0, 1 ou -1
-            moveVector.x = (targetPos - transform.position).normalized.x * Speed;
-            moveVector.z = Speed;
+            moveVector.x = (targetPos - transform.position).normalized.x * _speedData.floatValue;
+            moveVector.z = _speedData.floatValue;
             transform.Translate(moveVector * Time.fixedDeltaTime);
     }
 
-    void DisableMovement()
+    private void DisableMovement()
     {
         _playerMovement.enabled = false;
+    }
+
+    private void ResetSpeed()
+    {
+        _speedData.floatValue = _speedData.defaultFloatValue;
     }
 }

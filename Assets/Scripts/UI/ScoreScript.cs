@@ -4,8 +4,7 @@ using UnityEngine.UI;
 public sealed class ScoreScript : MonoBehaviour
 {
     [SerializeField] private Text _scoreText;
-
-    private int _score;
+    [SerializeField] private IntValue _actualScoreData;
 
     void Start()
     {
@@ -15,16 +14,23 @@ public sealed class ScoreScript : MonoBehaviour
     private void OnEnable()
     {
         CoinObtained.OnCoinObtainedByPlayer += UpdateScore;
+        PlayerDieScript.OnPlayerDied += ResetScore;
     }
 
     private void OnDisable()
     {
         CoinObtained.OnCoinObtainedByPlayer -= UpdateScore;
+        PlayerDieScript.OnPlayerDied -= ResetScore;
     }
 
     private void UpdateScore()
     {
-        _score++;
-        _scoreText.text = "SCORE: " + _score;
+        _actualScoreData.intValue++;
+        _scoreText.text = "SCORE: " + _actualScoreData.intValue;
+    }
+
+    private void ResetScore()
+    {
+        _actualScoreData.intValue = _actualScoreData.defaultIntValue;
     }
 }

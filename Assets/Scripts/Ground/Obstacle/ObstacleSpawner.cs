@@ -9,8 +9,9 @@ public sealed class ObstacleSpawner : MonoBehaviour
     [SerializeField] private float _tallObstacleChance;
 
     // mudar para 3 variáveis distintas
-    [SerializeField] private Transform[] _obstacleSpawnTransformArray = new Transform[3];
-
+    [SerializeField] private Transform _obstacleSpawnTransformLeft;
+    [SerializeField] private Transform _obstacleSpawnTransformCenter;
+    [SerializeField] private Transform _obstacleSpawnTransformRight;
     // adicionar object pooling
     public void SpawnObstacles()
     {
@@ -23,8 +24,24 @@ public sealed class ObstacleSpawner : MonoBehaviour
         }
 
         int obstacleSpawnIndex = Random.Range(0, 3);
-        Transform spawnPoint = _obstacleSpawnTransformArray[obstacleSpawnIndex];
+        Vector3 spawnPoint = new Vector3();
 
-        Instantiate(obstacleToSpawn, spawnPoint.position, Quaternion.identity, transform);
+        switch (obstacleSpawnIndex)
+        {
+            case (0):
+                spawnPoint = _obstacleSpawnTransformLeft.position;
+                break;
+            case (1):
+                spawnPoint = _obstacleSpawnTransformCenter.position;
+                break;
+            case (2):
+                spawnPoint = _obstacleSpawnTransformRight.position;
+                break;
+            default:
+                spawnPoint = _obstacleSpawnTransformCenter.position;
+                break;
+        }
+
+        Instantiate(obstacleToSpawn, spawnPoint, Quaternion.identity, transform);
     }
 }

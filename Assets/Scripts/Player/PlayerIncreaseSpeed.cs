@@ -3,14 +3,14 @@ using UnityEngine;
 public sealed class PlayerIncreaseSpeed : MonoBehaviour
 {
     // criar scriptable object da speed;
-    [SerializeField] PlayerMovement _playerMovement;
+    [SerializeField] private FloatValue _speedData;
 
-    public float SpeedIncreasePerPoint = .1f;
+    [SerializeField] private float SpeedIncreasePerPoint ;
 
-    private void Awake()
-    {
-        _playerMovement = GetComponent<PlayerMovement>();
-    }
+    //private void Awake()
+    //{
+    //    _playerMovement = GetComponent<PlayerMovement>();
+    //}
 
     private void OnEnable()
     {
@@ -24,6 +24,6 @@ public sealed class PlayerIncreaseSpeed : MonoBehaviour
 
     private void IncreaseSpeed()
     {
-        _playerMovement.Speed += SpeedIncreasePerPoint;
+        _speedData.floatValue += SpeedIncreasePerPoint;
     }
 }
