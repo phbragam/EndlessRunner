@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 4839276999516489697}
   - component: {fileID: 650183725615470141}
   m_Layer: 0
-  m_Name: GroundTyle
+  m_Name: GroundTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9943bb691a57f4da92851e604acb70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinPrefab: {fileID: 6081129526358317644, guid: 83227c67c0b0a75429baf5a9ffc55b60, type: 3}
+  _coinPrefab: {fileID: 6081129526358317644, guid: 83227c67c0b0a75429baf5a9ffc55b60, type: 3}
 --- !u!114 &650183725615470141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,10 +245,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b7f5c0d61cf814aaa41197a47ff3a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefab: {fileID: 2733983344329025851, guid: 40d823bce0461464485b6f1d1c446a7a, type: 3}
-  tallObstaclePrefab: {fileID: 2733983344329025851, guid: 9b07f95f4bf7d8e4bacd0f37cac347cc, type: 3}
-  tallObstacleChance: 0.1
-  obstacleSpawn:
+  _obstaclePrefab: {fileID: 2733983344329025851, guid: 40d823bce0461464485b6f1d1c446a7a, type: 3}
+  _tallObstaclePrefab: {fileID: 2733983344329025851, guid: 9b07f95f4bf7d8e4bacd0f37cac347cc, type: 3}
+  _tallObstacleChance: 0.2
+  _obstacleSpawnTransformArray:
   - {fileID: 5546216185282770811}
   - {fileID: 7115881811264972034}
   - {fileID: 5820540798334086315}

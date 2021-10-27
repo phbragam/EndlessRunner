@@ -29,6 +29,7 @@ public sealed class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+
         if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
         {
             MoveLane(false);
@@ -38,6 +39,7 @@ public sealed class PlayerMovement : MonoBehaviour
         {
             MoveLane(true);
         }
+
     }
 
     private void FixedUpdate()
@@ -48,8 +50,10 @@ public sealed class PlayerMovement : MonoBehaviour
 
     private void MoveLane(bool goingRight)
     {
+
         if (!goingRight)
         {
+
             switch (TargetLane)
             {
                 case (Lane.Right):
@@ -59,9 +63,11 @@ public sealed class PlayerMovement : MonoBehaviour
                     TargetLane = Lane.Left;
                     break;
             }
+
         }
         else
         {
+
             switch (TargetLane)
             {
                 case (Lane.Left):
@@ -71,12 +77,15 @@ public sealed class PlayerMovement : MonoBehaviour
                     TargetLane = Lane.Right;
                     break;
             }
+
         }
+
     }
 
     private Vector3 SwitchTargetPosition()
     {
         Vector3 targetPosition = transform.position.z * Vector3.forward;
+
         switch (TargetLane)
         {
             case (Lane.Right):

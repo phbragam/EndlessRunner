@@ -1,17 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreScript : MonoBehaviour
+public sealed class ScoreScript : MonoBehaviour
 {
-    int score;
-    [SerializeField] Text scoreText;
+    [SerializeField] private Text _scoreText;
 
-    // Start is called before the first frame update
+    private int _score;
+
     void Start()
     {
-        scoreText = GetComponent<Text>();
+        _scoreText = GetComponent<Text>();
     }
 
     private void OnEnable()
@@ -24,10 +22,9 @@ public class ScoreScript : MonoBehaviour
         CoinObtained.OnCoinObtainedByPlayer -= UpdateScore;
     }
 
-    
     private void UpdateScore()
     {
-        score++;
-        scoreText.text = "SCORE: " + score;
+        _score++;
+        _scoreText.text = "SCORE: " + _score;
     }
 }

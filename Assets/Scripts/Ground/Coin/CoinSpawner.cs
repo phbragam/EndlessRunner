@@ -1,51 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinSpawner : MonoBehaviour
+public sealed class CoinSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject coinPrefab;
-    private const float leftX = -3.3f; 
-    private const float centerX = 0f; 
-    private const float rightX = 3.3f; 
+    [SerializeField] private GameObject _coinPrefab;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //SpawnCoins();
-    }
-
+    private const float LeftLanePositionX = -3.3f; 
+    private const float CenterLanePositionX = 0f; 
+    private const float RightLanePositionX = 3.3f; 
 
     // adicionar object pooling
     public void SpawnCoins()
     {
         int coinsToSpawn = Random.Range(0, 5);
         //int coinsToSpawn = 10;
+
         for (int i = 0; i < coinsToSpawn; i++)
         {
-            GameObject temp = Instantiate(coinPrefab, transform);
+            GameObject temp = Instantiate(_coinPrefab, transform);
             temp.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
             int lane = Random.Range(0, 3);
+
             switch (lane)
             {
                 case (0):
-                    temp.transform.position = new Vector3(leftX, temp.transform.position.y, temp.transform.position.z);
+                    temp.transform.position = new Vector3(LeftLanePositionX, temp.transform.position.y, temp.transform.position.z);
                     //Debug.Log(transform.position);
                     break;
                 case (1):
-                    temp.transform.position = new Vector3(centerX, temp.transform.position.y, temp.transform.position.z);
+                    temp.transform.position = new Vector3(CenterLanePositionX, temp.transform.position.y, temp.transform.position.z);
                     //Debug.Log(transform.position);
                     break;
                 case (2):
-                    temp.transform.position = new Vector3(rightX, temp.transform.position.y, temp.transform.position.z);
+                    temp.transform.position = new Vector3(RightLanePositionX, temp.transform.position.y, temp.transform.position.z);
                     //Debug.Log(transform.position);
                     break;
             }
-        }
 
+        }
     }
 
-    Vector3 GetRandomPointInCollider(Collider collider)
+    private Vector3 GetRandomPointInCollider(Collider collider)
     {
         Vector3 point = new Vector3(
             Random.Range(collider.bounds.min.x, collider.bounds.max.x),

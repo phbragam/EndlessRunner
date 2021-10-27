@@ -1,32 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleSpawner : MonoBehaviour
+public sealed class ObstacleSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject obstaclePrefab;
-    [SerializeField] GameObject tallObstaclePrefab;
-    [SerializeField] float tallObstacleChance;
-    [SerializeField] public Transform[] obstacleSpawn = new Transform[3];
+    [SerializeField] private GameObject _obstaclePrefab;
+    [SerializeField] private GameObject _tallObstaclePrefab;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //SpawnObstacles();
-    }
+    // entre 0 e 1
+    [SerializeField] private float _tallObstacleChance;
+
+    // mudar para 3 variáveis distintas
+    [SerializeField] private Transform[] _obstacleSpawnTransformArray = new Transform[3];
 
     // adicionar object pooling
     public void SpawnObstacles()
     {
-        GameObject obstacleToSpawn = obstaclePrefab;
+        GameObject obstacleToSpawn = _obstaclePrefab;
         float random = Random.Range(0f, 1f);
-        if (random < tallObstacleChance)
+
+        if (random < _tallObstacleChance)
         {
-            obstacleToSpawn = tallObstaclePrefab;
+            obstacleToSpawn = _tallObstaclePrefab;
         }
 
         int obstacleSpawnIndex = Random.Range(0, 3);
-        Transform spawnPoint = obstacleSpawn[obstacleSpawnIndex];
+        Transform spawnPoint = _obstacleSpawnTransformArray[obstacleSpawnIndex];
 
         Instantiate(obstacleToSpawn, spawnPoint.position, Quaternion.identity, transform);
     }

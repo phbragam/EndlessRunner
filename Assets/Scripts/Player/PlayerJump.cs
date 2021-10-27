@@ -35,10 +35,12 @@ public sealed class PlayerJump : MonoBehaviour
 
         float height = GetComponent<Collider>().bounds.size.y;
         bool isGrounded = Physics.Raycast(transform.position, Vector3.down, (height / 2) + 0.1f, _groundMask);
+
         if (isGrounded)
         {
             _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
         }
+
     }
 
     private void DisableJump()

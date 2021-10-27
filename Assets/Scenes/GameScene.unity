@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0455e7e170b54d54697887a8a63cea57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groudTile: {fileID: 7456808148869549930, guid: 7db752c9140ca6e4aa3053ea5b702735, type: 3}
+  _groudTile: {fileID: 7456808148869549930, guid: 7db752c9140ca6e4aa3053ea5b702735, type: 3}
 --- !u!4 &240428610
 Transform:
   m_ObjectHideFlags: 0
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729c046cca1d17a48a866e468c8a3cf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 393636654}
+  _scoreText: {fileID: 0}
 --- !u!1 &411099271
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +536,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1284709577}
-  - component: {fileID: 1284709576}
   - component: {fileID: 1284709578}
   m_Layer: 0
   m_Name: GameManager
@@ -545,18 +544,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1284709576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1284709575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da6e3934a01ebea4da951f860d634660, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1284709577
 Transform:
   m_ObjectHideFlags: 0
@@ -712,7 +699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf149cc480fd5074eb4725ec8ae85166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  _player: {fileID: 0}
 --- !u!1 &1590158151
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
+using UnityEngine;
 
-public class CoinObtained : MonoBehaviour
+public sealed class CoinObtained : MonoBehaviour
 {
     public static event Action OnCoinObtainedByPlayer;
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.GetComponent<ObstacleReference>())
         {
             Destroy(gameObject);
@@ -21,6 +20,8 @@ public class CoinObtained : MonoBehaviour
         }
 
         OnCoinObtainedByPlayer?.Invoke();
+
+        // object pooling
         Destroy(gameObject);
     }
 }
