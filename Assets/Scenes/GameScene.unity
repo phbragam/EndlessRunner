@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 393636653}
   - component: {fileID: 393636655}
   - component: {fileID: 393636654}
+  - component: {fileID: 393636656}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -237,7 +238,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: 0'
+  m_Text: 'SCORE: 0'
 --- !u!222 &393636655
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -246,6 +247,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393636652}
   m_CullTransparentMesh: 1
+--- !u!114 &393636656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393636652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729c046cca1d17a48a866e468c8a3cf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 393636654}
 --- !u!1 &411099271
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,6 +537,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1284709577}
   - component: {fileID: 1284709576}
+  - component: {fileID: 1284709578}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -542,8 +557,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6e3934a01ebea4da951f860d634660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 393636654}
-  playerMovement: {fileID: 1590158157}
 --- !u!4 &1284709577
 Transform:
   m_ObjectHideFlags: 0
@@ -558,6 +571,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1284709578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284709575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6215ba6dcad0a4bad5ac7dc02f7ac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1315651721
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,6 +725,7 @@ GameObject:
   - component: {fileID: 1590158155}
   - component: {fileID: 1590158154}
   - component: {fileID: 1590158157}
+  - component: {fileID: 1590158161}
   - component: {fileID: 1590158158}
   - component: {fileID: 1590158159}
   - component: {fileID: 1590158152}
@@ -818,7 +844,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  speedIncreasePerPoint: 1
   laneDistance: 3.3
 --- !u!114 &1590158158
 MonoBehaviour:
@@ -833,7 +858,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 15
-  verticalVelocity: 0
   groundMask:
     serializedVersion: 2
     m_Bits: 64
@@ -861,4 +885,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c07c4387a2114df4e8ac500dc06615dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alive: 1
+--- !u!114 &1590158161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590158151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edc7c5f2915ef8c44baf3f6c2265ba93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedIncreasePerPoint: 0.5
+  playerMovement: {fileID: 0}

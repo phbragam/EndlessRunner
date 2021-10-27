@@ -10,9 +10,19 @@ public class PlayerJump : MonoBehaviour
     public PrototypePlayerInputActions prototypePlayerInputActions;
     private Rigidbody rb;
     [SerializeField] private float jumpForce;
-    [SerializeField] private float verticalVelocity;
-
     [SerializeField] LayerMask groundMask;
+
+    private void OnEnable()
+    {
+        PlayerDieScript.OnPlayerDied += DisableJump;
+    }
+
+    private void OnDisable()
+    {
+        prototypePlayerInputActions.Player.Disable();
+        PlayerDieScript.OnPlayerDied -= DisableJump;
+    }
+
 
     private void Awake()
     {
@@ -20,7 +30,6 @@ public class PlayerJump : MonoBehaviour
 
         prototypePlayerInputActions = new PrototypePlayerInputActions();
         prototypePlayerInputActions.Player.Enable();
-
         prototypePlayerInputActions.Player.Jump.started += Jump;
     }
 
@@ -37,14 +46,8 @@ public class PlayerJump : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    void DisableJump()
     {
-        prototypePlayerInputActions.Player.Disable();
+        GetComponent<PlayerJump>().enabled = false;
     }
-
-
-
-
-
-
 }
