@@ -57,12 +57,12 @@ public sealed class PlayerMovement : MonoBehaviour
 
     private void LateUpdate()
     {
-        
+
     }
 
     private void FixedUpdate()
     {
-        
+
     }
 
     private void MoveLane(bool goingRight)
@@ -108,11 +108,14 @@ public sealed class PlayerMovement : MonoBehaviour
         {
             case (Lane.Right):
                 targetPosition += Vector3.right * _laneDistance;
+                Debug.Log(TargetLane + "" + targetPosition);
                 break;
             case (Lane.Center):
+                Debug.Log(TargetLane + "" + targetPosition);
                 break;
             case (Lane.Left):
                 targetPosition += Vector3.left * _laneDistance;
+                Debug.Log(TargetLane + "" + targetPosition);
                 break;
         }
 
@@ -124,7 +127,25 @@ public sealed class PlayerMovement : MonoBehaviour
     {
         Vector3 moveVector = Vector3.zero;
         // moveVector.x pode ser 0, 1 ou -1
-        moveVector.x = (targetPos - transform.position).normalized.x * _speedData.floatValue;
+
+        Vector3 difference = targetPos - transform.position;
+
+        if (difference.x >= -0.1f && difference.x <= 0.1f)
+        {
+            difference.x = 0f;
+        }
+
+        if (difference.x >= _laneDistance -0.1f && difference.x <= _laneDistance + 0.1f)
+        {
+            difference.x = _laneDistance;
+        }
+
+        if (difference.x >= (-_laneDistance -0.1f) && difference.x <= (-_laneDistance +0.1f))
+        {
+            difference.x = -_laneDistance;
+        }
+
+        moveVector.x = (difference).normalized.x * _speedData.floatValue;
         moveVector.z = _speedData.floatValue;
         transform.Translate(moveVector * Time.deltaTime);
     }
@@ -132,16 +153,29 @@ public sealed class PlayerMovement : MonoBehaviour
     private void ClampPositionX()
     {
         Vector3 positionClamped = transform.position;
-        positionClamped.x = Mathf.Clamp(transform.position.x, -_laneDistance, _laneDistance);
 
-        if (transform.position.x >= -0.2f && transform.position.x <= 0.2f)
-        {
-            transform.position = new Vector3(0f, positionClamped.y, positionClamped.z);
-        }
-        else
-        {
-            transform.position = positionClamped;
-        }
+        //if (positionClamped.x >= 0 && positionClamped.x <= _laneDistance)
+        //{
+        //    positionClamped.x = Mathf.Clamp(transform.position.x, 0, _laneDistance);
+        //    transform.position = new Vector3(positionClamped.x, positionClamped.y, positionClamped.z);
+        //}
+
+        //if (positionClamped.x <= 0 && positionClamped.x >= -_laneDistance)
+        //{
+        //    positionClamped.x = Mathf.Clamp(transform.position.x, 0, -_laneDistance);
+        //    transform.position = new Vector3(positionClamped.x, positionClamped.y, positionClamped.z);
+        //}
+
+        //transform.position = new Vector3(positionClamped.x, positionClamped.y, positionClamped.z);
+
+        //if (transform.position.x >= -0.2f && transform.position.x <= 0.2f)
+        //{
+        //    transform.position = new Vector3(0f, positionClamped.y, positionClamped.z);
+        //}
+        //else
+        //{
+        //    transform.position = positionClamped;
+        //}
 
     }
 

@@ -39,8 +39,9 @@ public sealed class PlayerJump : MonoBehaviour
     {
 
         float height = GetComponent<Collider>().bounds.size.y;
-        Debug.Log(height);
-        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, (height / 2) + 1.1f, _groundMask);
+        //Debug.Log(height);
+        // ajustar primeiro parametro do raycast
+        bool isGrounded = Physics.Raycast(transform.position + Vector3.up, Vector3.down, (height / 2) + .1f, _groundMask);
         //Debug.Log(transform.position);
         //Debug.Log(transform.position + Vector3.down * ((height / 2) + .1f));
 
@@ -61,11 +62,11 @@ public sealed class PlayerJump : MonoBehaviour
 
         if (isGrounded)
         {
-            Debug.Log("Grounded");
+            //Debug.Log("Grounded");
         }
         else
         {
-            Debug.Log("Not Grounded");
+            //Debug.Log("Not Grounded");
         }
     }
 
