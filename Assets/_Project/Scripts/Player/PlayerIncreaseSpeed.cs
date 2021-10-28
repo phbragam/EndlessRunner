@@ -2,15 +2,14 @@ using UnityEngine;
 
 public sealed class PlayerIncreaseSpeed : MonoBehaviour
 {
-    // criar scriptable object da speed;
-    [SerializeField] private FloatValue _speedData;
-    [SerializeField] private float _maxSpeed;
-    [SerializeField] private float SpeedIncreasePerPoint;
+    [SerializeField] private float _speedIncreasePerPoint;
 
-    //private void Awake()
-    //{
-    //    _playerMovement = GetComponent<PlayerMovement>();
-    //}
+    private PlayerMovement _playerMovement;
+
+    private void Awake()
+    {
+        _playerMovement = GetComponent<PlayerMovement>();
+    }
 
     private void OnEnable()
     {
@@ -24,11 +23,9 @@ public sealed class PlayerIncreaseSpeed : MonoBehaviour
 
     private void IncreaseSpeed()
     {
-        if (_speedData.floatValue <= _maxSpeed)
-        {
-            _speedData.floatValue += SpeedIncreasePerPoint;
-        }
-        else
+        bool increased = _playerMovement.IncreaseSpeed(_speedIncreasePerPoint);
+
+        if (!increased)
         {
             CoinObtained.OnCoinObtainedByPlayer -= IncreaseSpeed;
         }

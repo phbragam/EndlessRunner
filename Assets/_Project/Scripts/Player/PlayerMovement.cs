@@ -7,12 +7,11 @@ public sealed class PlayerMovement : MonoBehaviour
     public enum Lane { Left, Center, Right }
 
     [SerializeField] private float _laneDistance = 3.3f;
-    // mudar
-    [SerializeField] private FloatValue _speedData;
+    [SerializeField] private float _speed;
+    [SerializeField] private float _maxSpeed;
 
     private PlayerMovement _playerMovement;
     private Lane TargetLane;
-    //private int desiredLane = 1;
 
     public void Initialize()
     {
@@ -23,13 +22,11 @@ public sealed class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         PlayerDieScript.OnPlayerDied += DisableMovement;
-        PlayerDieScript.OnPlayerDied += ResetSpeed;
     }
 
     private void OnDisable()
     {
         PlayerDieScript.OnPlayerDied -= DisableMovement;
-        PlayerDieScript.OnPlayerDied -= ResetSpeed;
     }
 
     private void Awake()
@@ -52,17 +49,6 @@ public sealed class PlayerMovement : MonoBehaviour
 
         Vector3 targetPos = SwitchTargetPosition();
         Move(targetPos);
-        ClampPositionX();
-    }
-
-    private void LateUpdate()
-    {
-
-    }
-
-    private void FixedUpdate()
-    {
-
     }
 
     private void MoveLane(bool goingRight)
@@ -130,62 +116,42 @@ public sealed class PlayerMovement : MonoBehaviour
 
         Vector3 difference = targetPos - transform.position;
 
-        if (difference.x >= -0.1f && difference.x <= 0.1f)
+        if (difference.x >= -0.2f && difference.x <= 0.2f)
         {
             difference.x = 0f;
         }
 
-        if (difference.x >= _laneDistance -0.1f && difference.x <= _laneDistance + 0.1f)
+        if (difference.x >= _laneDistance - 0.2f && difference.x <= _laneDistance + 0.2f)
         {
             difference.x = _laneDistance;
         }
 
-        if (difference.x >= (-_laneDistance -0.1f) && difference.x <= (-_laneDistance +0.1f))
+        if (difference.x >= (-_laneDistance - 0.2f) && difference.x <= (-_laneDistance + 0.2f))
         {
             difference.x = -_laneDistance;
         }
 
-        moveVector.x = (difference).normalized.x * _speedData.floatValue;
-        moveVector.z = _speedData.floatValue;
-        transform.Translate(moveVector * Time.deltaTime);
+        moveVector.x = (difference).normalized.x * _speed;
+        moveVector.z = _speed;
+        transform.Translate(moveVector * Time.fixedDeltaTime);
     }
 
-    private void ClampPositionX()
-    {
-        Vector3 positionClamped = transform.position;
-
-        //if (positionClamped.x >= 0 && positionClamped.x <= _laneDistance)
-        //{
-        //    positionClamped.x = Mathf.Clamp(transform.position.x, 0, _laneDistance);
-        //    transform.position = new Vector3(positionClamped.x, positionClamped.y, positionClamped.z);
-        //}
-
-        //if (positionClamped.x <= 0 && positionClamped.x >= -_laneDistance)
-        //{
-        //    positionClamped.x = Mathf.Clamp(transform.position.x, 0, -_laneDistance);
-        //    transform.position = new Vector3(positionClamped.x, positionClamped.y, positionClamped.z);
-        //}
-
-        //transform.position = new Vector3(positionClamped.x, positionClamped.y, positionClamped.z);
-
-        //if (transform.position.x >= -0.2f && transform.position.x <= 0.2f)
-        //{
-        //    transform.position = new Vector3(0f, positionClamped.y, positionClamped.z);
-        //}
-        //else
-        //{
-        //    transform.position = positionClamped;
-        //}
-
-    }
 
     private void DisableMovement()
     {
         _playerMovement.enabled = false;
     }
 
-    private void ResetSpeed()
+    public bool IncreaseSpeed(float speedIncreasePerPoint)
     {
-        _speedData.floatValue = _speedData.defaultFloatValue;
+        if (_speed < _maxSpeed)
+        {
+            _speed += speedIncreasePerPoint;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

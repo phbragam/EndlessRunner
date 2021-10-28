@@ -14,7 +14,7 @@ public sealed class CameraFollow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         Vector3 targetPos = _player.position + _offset;
         targetPos.x = 0;
