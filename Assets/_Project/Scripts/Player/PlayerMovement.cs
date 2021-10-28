@@ -94,14 +94,14 @@ public sealed class PlayerMovement : MonoBehaviour
         {
             case (Lane.Right):
                 targetPosition += Vector3.right * _laneDistance;
-                Debug.Log(TargetLane + "" + targetPosition);
+                //Debug.Log(TargetLane + "" + targetPosition);
                 break;
             case (Lane.Center):
-                Debug.Log(TargetLane + "" + targetPosition);
+                //Debug.Log(TargetLane + "" + targetPosition);
                 break;
             case (Lane.Left):
                 targetPosition += Vector3.left * _laneDistance;
-                Debug.Log(TargetLane + "" + targetPosition);
+                //Debug.Log(TargetLane + "" + targetPosition);
                 break;
         }
 
@@ -144,6 +144,7 @@ public sealed class PlayerMovement : MonoBehaviour
 
     public bool IncreaseSpeed(float speedIncreasePerPoint)
     {
+
         if (_speed < _maxSpeed)
         {
             _speed += speedIncreasePerPoint;

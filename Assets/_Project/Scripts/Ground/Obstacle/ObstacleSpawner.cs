@@ -12,11 +12,22 @@ public sealed class ObstacleSpawner : MonoBehaviour
     [SerializeField] private Transform _obstacleSpawnTransformLeft;
     [SerializeField] private Transform _obstacleSpawnTransformCenter;
     [SerializeField] private Transform _obstacleSpawnTransformRight;
+
+    private GenericObjectPool _obstaclePool;
+    private GenericObjectPool _tallObstaclePool;
+
+    private void Awake()
+    {
+        //_obstaclePool = FindObjectOfType<ObstaclePoolReference>().GetComponent<GenericObjectPool>();
+        //_obstaclePool = FindObjectOfType<TallObstaclePoolReference>().GetComponent<GenericObjectPool>();
+    }
+
     // adicionar object pooling
     public void SpawnObstacles()
     {
         GameObject obstacleToSpawn = _obstaclePrefab;
         float random = Random.Range(0f, 1f);
+
 
         if (random < _tallObstacleChance)
         {
@@ -42,6 +53,6 @@ public sealed class ObstacleSpawner : MonoBehaviour
                 break;
         }
 
-        //Instantiate(obstacleToSpawn, spawnPoint, Quaternion.identity, transform);
+        Instantiate(obstacleToSpawn, spawnPoint, Quaternion.identity, transform);
     }
 }

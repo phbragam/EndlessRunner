@@ -4,7 +4,13 @@ public sealed class GroundSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _groudTile;
 
+    private GenericObjectPool _groundTilePool;
     private Vector3 _nextSpawnPoint;
+
+    private void Awake()
+    {
+        _groundTilePool = FindObjectOfType<GroundTilePoolReference>().GetComponent<GenericObjectPool>();
+    }
 
     private void Start()
     {
@@ -28,14 +34,17 @@ public sealed class GroundSpawner : MonoBehaviour
     // adicionar object pooling
     public void SpawnTile(bool spawnItems)
     {
-        GameObject temp = Instantiate(_groudTile, _nextSpawnPoint, Quaternion.identity);
-        _nextSpawnPoint = temp.transform.GetChild(1).transform.position;
+        GameObject groundTile = _groundTilePool.GetObjectInPool();
+        groundTile.transform.position = _nextSpawnPoint;
+        groundTile.transform.rotation = Quaternion.identity;
+        //GameObject temp = Instantiate(_groudTile, _nextSpawnPoint, Quaternion.identity);
+        _nextSpawnPoint = groundTile.transform.GetChild(1).transform.position;
 
         if (spawnItems)
         {
             // pensar em forma melhor de fazer isso (após object pooling)
-            temp.GetComponent<ObstacleSpawner>().SpawnObstacles();
-            temp.GetComponent<CoinSpawner>().SpawnCoins();
+            //temp.GetComponent<ObstacleSpawner>().SpawnObstacles();
+            //temp.GetComponent<CoinSpawner>().SpawnCoins();
         }
     }
 }
