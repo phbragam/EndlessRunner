@@ -10,7 +10,7 @@ public sealed class CoinObtained : MonoBehaviour
 
         if (other.GetComponent<ObstacleReference>())
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             return;
         }
 
@@ -22,6 +22,6 @@ public sealed class CoinObtained : MonoBehaviour
         OnCoinObtainedByPlayer?.Invoke();
 
         // object pooling
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0455e7e170b54d54697887a8a63cea57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _initialNumberOfTiles: 15
 --- !u!4 &240428610
 Transform:
   m_ObjectHideFlags: 0
@@ -806,6 +807,10 @@ PrefabInstance:
     - target: {fileID: 7346433020710072406, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
       propertyPath: jumpForce
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346433020710072407, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7912295599400132971, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
       propertyPath: m_RootOrder

@@ -36,12 +36,12 @@ public sealed class GroundTile : MonoBehaviour
 
         if (other.GetComponent<PlayerReference>())
         {
-            _groundSpawner.SpawnTile();
-            // adicionar object pooling
-            //Destroy(gameObject, 2f);
+            _groundSpawner.RelocateTile();
             Invoke("BackToPool", _timeToReturnToPool);
-            // desativar os obstaculos 
             Invoke("RelocateObstacle", _timeToReturnToPool);
+            Invoke("RelocateCoins", _timeToReturnToPool);
+            _coinSpawner.DeactivateAllCoinsInTile();
+
         }
     }
 
@@ -54,5 +54,10 @@ public sealed class GroundTile : MonoBehaviour
     {
         GameObject relocatedObstacle = _obstacleSpawner.ChooseObstacle();
         _obstacleSpawner.PlaceObstacle(relocatedObstacle);
+    }
+
+    private void RelocateCoins()
+    {
+        _coinSpawner.PlaceCoins();
     }
 }

@@ -155,6 +155,10 @@ PrefabInstance:
       propertyPath: _tallObstacle
       value: 
       objectReference: {fileID: 1769277003951410747}
+    - target: {fileID: 4839276999516489697, guid: 7db752c9140ca6e4aa3053ea5b702735, type: 3}
+      propertyPath: _totalCoinsPerTile
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5873771167133408599, guid: 7db752c9140ca6e4aa3053ea5b702735, type: 3}
       propertyPath: m_RootOrder
       value: 0
