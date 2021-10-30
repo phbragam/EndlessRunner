@@ -25,7 +25,7 @@ public sealed class GenericObjectPool : MonoBehaviour
 
         if (_objectPool.Count > 0)
         {
-            Debug.Log(_objectPool.Count);
+            //Debug.Log(_objectPool.Count);
             GameObject obj = _objectPool.Dequeue();
             obj.SetActive(true);
             return obj;
