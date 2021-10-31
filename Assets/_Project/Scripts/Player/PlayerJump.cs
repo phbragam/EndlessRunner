@@ -6,10 +6,13 @@ public sealed class PlayerJump : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private LayerMask _groundMask;
 
-    private PrototypePlayerInputActions _prototypePlayerInputActions;
-    
-    
+    private PrototypePlayerInputActions _playerInputActions;
     private Rigidbody _rb;
+
+    public void Initialize()
+    {
+
+    }
 
     private void OnEnable()
     {
@@ -18,18 +21,13 @@ public sealed class PlayerJump : MonoBehaviour
 
     private void OnDisable()
     {
-        _prototypePlayerInputActions.Player.Disable();
         PlayerDieScript.OnPlayerDied -= DisableJump;
     }
 
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
-
-        _prototypePlayerInputActions = new PrototypePlayerInputActions();
-        _prototypePlayerInputActions.Player.Enable();
-        _prototypePlayerInputActions.Player.Jump.started += Jump;
+        SetUpJump();
     }
 
     private void Jump(InputAction.CallbackContext context)
@@ -54,21 +52,32 @@ public sealed class PlayerJump : MonoBehaviour
 
     private void Update()
     {
-        float height = GetComponent<Collider>().bounds.size.y;
-        bool isGrounded = Physics.Raycast(transform.position + Vector3.up, Vector3.down, (height / 2) + .1f, _groundMask);
+        //float height = GetComponent<Collider>().bounds.size.y;
+        //bool isGrounded = Physics.Raycast(transform.position + Vector3.up, Vector3.down, (height / 2) + .1f, _groundMask);
 
-        if (isGrounded)
-        {
-            //Debug.Log("Grounded");
-        }
-        else
-        {
-            //Debug.Log("Not Grounded");
-        }
+        //if (isGrounded)
+        //{
+        //    //Debug.Log("Grounded");
+        //}
+        //else
+        //{
+        //    //Debug.Log("Not Grounded");
+        //}
+    }
+
+    private void SetUpJump()
+    {
+        _rb = GetComponent<Rigidbody>();
+
+        _playerInputActions = new PrototypePlayerInputActions();
+        _playerInputActions.Player.Enable();
+        _playerInputActions.Player.Jump.started += Jump;
     }
 
     private void DisableJump()
     {
+        //??
+        _playerInputActions.Player.Disable();
         GetComponent<PlayerJump>().enabled = false;
     }
 }

@@ -3,9 +3,6 @@ using UnityEngine.InputSystem;
 
 public sealed class PlayerMovement : MonoBehaviour
 {
-    // criar script separado
-    public enum Lane { Left, Center, Right }
-
     [SerializeField] private float _laneDistance = 3.3f;
     [SerializeField] private float _speed;
     [SerializeField] private float _maxSpeed;
@@ -15,25 +12,29 @@ public sealed class PlayerMovement : MonoBehaviour
 
     public void Initialize()
     {
-        _playerMovement = this;
-        TargetLane = Lane.Center;
+        
     }
 
-    private void OnEnable()
+    public bool IncreaseSpeed(float speedIncreasePerPoint)
     {
-        PlayerDieScript.OnPlayerDied += DisableMovement;
-    }
 
-    private void OnDisable()
-    {
-        PlayerDieScript.OnPlayerDied -= DisableMovement;
+        if (_speed < _maxSpeed)
+        {
+            _speed += speedIncreasePerPoint;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private void Awake()
     {
-        Initialize();
+        SetUpMovement();
     }
 
+    // ajustar depois do almoço
     private void Update()
     {
         //Debug.Log(transform.position.x);
@@ -49,6 +50,16 @@ public sealed class PlayerMovement : MonoBehaviour
 
         Vector3 targetPos = SwitchTargetPosition();
         Move(targetPos);
+    }
+
+    private void OnEnable()
+    {
+        PlayerDieScript.OnPlayerDied += DisableMovement;
+    }
+
+    private void OnDisable()
+    {
+        PlayerDieScript.OnPlayerDied -= DisableMovement;
     }
 
     private void MoveLane(bool goingRight)
@@ -142,17 +153,9 @@ public sealed class PlayerMovement : MonoBehaviour
         _playerMovement.enabled = false;
     }
 
-    public bool IncreaseSpeed(float speedIncreasePerPoint)
+    private void SetUpMovement()
     {
-
-        if (_speed < _maxSpeed)
-        {
-            _speed += speedIncreasePerPoint;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        _playerMovement = this;
+        TargetLane = Lane.Center;
     }
 }

@@ -7,6 +7,16 @@ public sealed class PlayerDieScript : MonoBehaviour
 
     private void Update()
     {
+        InvokeDeathEventOnFall();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        InvokeDeathEventOnCollision(collision);
+    }
+
+    private void InvokeDeathEventOnFall()
+    {
 
         if (transform.position.y <= -5)
         {
@@ -15,7 +25,7 @@ public sealed class PlayerDieScript : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void InvokeDeathEventOnCollision(Collision collision)
     {
 
         if (collision.gameObject.GetComponent<ObstacleReference>())
