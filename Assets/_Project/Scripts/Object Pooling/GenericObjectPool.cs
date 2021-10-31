@@ -19,7 +19,6 @@ public sealed class GenericObjectPool : MonoBehaviour
 
         if (_objectPool.Count > 0)
         {
-            //Debug.Log(_objectPool.Count);
             GameObject obj = Instance._objectPool.Dequeue();
             obj.SetActive(true);
             return obj;
@@ -44,6 +43,10 @@ public sealed class GenericObjectPool : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
 
         Instance.InstatiatePoolElements();

@@ -6,15 +6,28 @@ public sealed class CameraFollow : MonoBehaviour
 
     private Vector3 _offset;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Initialize()
+    {
+        Start();
+    }
+
+    private void Start()
+    {
+        PlaceAndSetUpOffset();
+    }
+
+    private void LateUpdate()
+    {
+        FollowPlayer();
+    }
+
+    private void PlaceAndSetUpOffset()
     {
         _player = FindObjectOfType<PlayerReference>().gameObject.transform;
         _offset = transform.position - _player.position;
-    }
+    } 
 
-    // Update is called once per frame
-    void LateUpdate()
+    private void FollowPlayer()
     {
         Vector3 targetPos = _player.position + _offset;
         targetPos.x = 0;

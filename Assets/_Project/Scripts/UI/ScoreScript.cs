@@ -6,7 +6,12 @@ public sealed class ScoreScript : MonoBehaviour
     [SerializeField] private Text _scoreText;
     [SerializeField] private IntValue _actualScoreData;
 
-    void Start()
+    public void Initialize()
+    {
+
+    }
+
+    private void Start()
     {
         _scoreText = GetComponent<Text>();
     }

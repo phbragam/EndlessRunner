@@ -18,7 +18,7 @@ public sealed class SceneGameManager : MonoBehaviour
         Invoke("Load", 2f);
     }
 
-    void Load()
+    private void Load()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

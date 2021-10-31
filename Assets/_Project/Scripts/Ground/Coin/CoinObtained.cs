@@ -21,7 +21,6 @@ public sealed class CoinObtained : MonoBehaviour
 
         OnCoinObtainedByPlayer?.Invoke();
 
-        // object pooling
         gameObject.SetActive(false);
     }
 }

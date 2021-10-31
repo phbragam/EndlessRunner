@@ -207,6 +207,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundTile Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7968385409216949738, guid: 7db752c9140ca6e4aa3053ea5b702735, type: 3}
+      propertyPath: _timeToReturnToPool
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7db752c9140ca6e4aa3053ea5b702735, type: 3}
 --- !u!4 &3105894865229277343 stripped

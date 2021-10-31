@@ -5,7 +5,6 @@ public sealed class GroundTile : MonoBehaviour
     [SerializeField] private float _timeToReturnToPool;
 
     private GroundSpawner _groundSpawner;
-    private GenericObjectPool _groundTilePool;
     private ObstacleSpawner _obstacleSpawner;
     private CoinSpawner _coinSpawner;
 
@@ -16,7 +15,6 @@ public sealed class GroundTile : MonoBehaviour
         Awake();
     }
 
-    // Start is called before the first frame update
     private void Awake()
     {
         FindSpawnersAndPool();
@@ -40,7 +38,6 @@ public sealed class GroundTile : MonoBehaviour
     private void FindSpawnersAndPool()
     {
         _groundSpawner = FindObjectOfType<GroundSpawner>();
-        //_groundTilePool = FindObjectOfType<GroundTilePoolReference>().GetComponent<GenericObjectPool>();
 
         _obstacleSpawner = GetComponent<ObstacleSpawner>();
         _coinSpawner = GetComponent<CoinSpawner>();

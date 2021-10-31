@@ -4,12 +4,10 @@ public sealed class GroundSpawner : MonoBehaviour
 {
     [SerializeField] private int _initialNumberOfTiles;
 
-    //private GenericObjectPool _groundTilePool;
     private Vector3 _nextSpawnPoint;
 
     public void Initialize()
     {
-        Awake();
     }
 
     public void RelocateTile(int number)
@@ -30,11 +28,6 @@ public sealed class GroundSpawner : MonoBehaviour
         _nextSpawnPoint = groundTile.transform.GetChild(1).transform.position;
 
         groundTile.GetComponent<GroundTile>().Number = 99;
-    }
-
-    private void Awake()
-    {
-        //_groundTilePool = FindObjectOfType<GroundTilePoolReference>().GetComponent<GenericObjectPool>();
     }
 
     private void Start()
