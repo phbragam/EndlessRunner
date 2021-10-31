@@ -741,7 +741,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1601397380}
   - component: {fileID: 1601397379}
-  - component: {fileID: 1601397378}
   m_Layer: 0
   m_Name: GroundTilePool
   m_TagString: Untagged
@@ -749,18 +748,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1601397378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1601397377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f6685b30671794c993bae543473660, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1601397379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -773,7 +760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81daa5bd89731e44f8ac3ae163f7772d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectPrefab: {fileID: 2153405265251400354, guid: ad792633eafdd994baccb1bb9698291f, type: 3}
+  _objectPrefab: {fileID: 7456808148869549930, guid: 7db752c9140ca6e4aa3053ea5b702735, type: 3}
   _poolInitialSize: 20
 --- !u!4 &1601397380
 Transform:
@@ -796,22 +783,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1983486526274562298, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7346433020710072404, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
-      propertyPath: _speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7346433020710072406, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
-      propertyPath: jumpForce
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7346433020710072407, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7912295599400132971, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -858,7 +829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8216243290710873149, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
       propertyPath: m_Name
-      value: PlayerMummy
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
