@@ -6,6 +6,11 @@ public sealed class PlayerIncreaseSpeed : MonoBehaviour
 
     private PlayerMovement _playerMovement;
 
+    public void Initialize()
+    {
+
+    }
+
     private void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();

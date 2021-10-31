@@ -8,6 +8,7 @@ public sealed class PlayerMovement : MonoBehaviour
     [SerializeField] private float _maxSpeed;
 
     private PlayerMovement _playerMovement;
+    private PlayerInputActions _playerInputActions;
     private Lane TargetLane;
 
     public void Initialize()
@@ -34,20 +35,8 @@ public sealed class PlayerMovement : MonoBehaviour
         SetUpMovement();
     }
 
-    // ajustar depois do almoço
     private void Update()
     {
-        //Debug.Log(transform.position.x);
-        if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
-        {
-            MoveLane(false);
-        }
-
-        if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
-        {
-            MoveLane(true);
-        }
-
         Vector3 targetPos = SwitchTargetPosition();
         Move(targetPos);
     }
@@ -62,41 +51,32 @@ public sealed class PlayerMovement : MonoBehaviour
         PlayerDieScript.OnPlayerDied -= DisableMovement;
     }
 
-    private void MoveLane(bool goingRight)
+    private void MoveLeft(InputAction.CallbackContext context)
     {
-
-        if (!goingRight)
+        switch (TargetLane)
         {
-
-            switch (TargetLane)
-            {
-                case (Lane.Right):
-                    TargetLane = Lane.Center;
-                    break;
-                case (Lane.Center):
-                    TargetLane = Lane.Left;
-                    break;
-            }
-
+            case (Lane.Right):
+                TargetLane = Lane.Center;
+                break;
+            case (Lane.Center):
+                TargetLane = Lane.Left;
+                break;
         }
-        else
-        {
-
-            switch (TargetLane)
-            {
-                case (Lane.Left):
-                    TargetLane = Lane.Center;
-                    break;
-                case (Lane.Center):
-                    TargetLane = Lane.Right;
-                    break;
-            }
-
-        }
-
     }
 
-    // fazer não ser chamado todos os frames
+    private void MoveRight(InputAction.CallbackContext context)
+    {
+        switch (TargetLane)
+        {
+            case (Lane.Left):
+                TargetLane = Lane.Center;
+                break;
+            case (Lane.Center):
+                TargetLane = Lane.Right;
+                break;
+        }
+    }
+
     private Vector3 SwitchTargetPosition()
     {
         Vector3 targetPosition = transform.position.z * Vector3.forward;
@@ -105,26 +85,20 @@ public sealed class PlayerMovement : MonoBehaviour
         {
             case (Lane.Right):
                 targetPosition += Vector3.right * _laneDistance;
-                //Debug.Log(TargetLane + "" + targetPosition);
                 break;
             case (Lane.Center):
-                //Debug.Log(TargetLane + "" + targetPosition);
                 break;
             case (Lane.Left):
                 targetPosition += Vector3.left * _laneDistance;
-                //Debug.Log(TargetLane + "" + targetPosition);
                 break;
         }
 
-        //Debug.Log(targetPosition);
         return targetPosition;
     }
 
     private void Move(Vector3 targetPos)
     {
         Vector3 moveVector = Vector3.zero;
-        // moveVector.x pode ser 0, 1 ou -1
-
         Vector3 difference = targetPos - transform.position;
 
         if (difference.x >= -0.2f && difference.x <= 0.2f)
@@ -150,12 +124,25 @@ public sealed class PlayerMovement : MonoBehaviour
 
     private void DisableMovement()
     {
+        _playerInputActions.Player.Left.Disable();
+        _playerInputActions.Player.Right.Disable();
         _playerMovement.enabled = false;
     }
 
     private void SetUpMovement()
     {
+        InitializePlayerInputActions();
+
         _playerMovement = this;
         TargetLane = Lane.Center;
+    }
+
+    private void InitializePlayerInputActions()
+    {
+        _playerInputActions = new PlayerInputActions();
+        _playerInputActions.Player.Left.Enable();
+        _playerInputActions.Player.Right.Enable();
+        _playerInputActions.Player.Left.performed += MoveLeft;
+        _playerInputActions.Player.Right.performed += MoveRight;
     }
 }
