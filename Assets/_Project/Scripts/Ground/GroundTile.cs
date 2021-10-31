@@ -10,25 +10,21 @@ public sealed class GroundTile : MonoBehaviour
     private CoinSpawner _coinSpawner;
 
     public int Number { get;  set; }
-    // Start is called before the first frame update
-    void Awake()
+
+    public void Initialize()
     {
-        _groundSpawner = FindObjectOfType<GroundSpawner>();
-        _groundTilePool = FindObjectOfType<GroundTilePoolReference>().GetComponent<GenericObjectPool>();
+        Awake();
+    }
 
-        _obstacleSpawner = GetComponent<ObstacleSpawner>();
-        _coinSpawner = GetComponent<CoinSpawner>();
-
-        
+    // Start is called before the first frame update
+    private void Awake()
+    {
+        FindSpawnersAndPool();
     }
 
     private void Start()
     {
-
-        if (Number < 3)
-        {
-            _obstacleSpawner.DeactivateObstacles();
-        }
+        DeactivateFirstObstacles();
     }
 
     private void OnTriggerExit(Collider other)
@@ -36,18 +32,32 @@ public sealed class GroundTile : MonoBehaviour
 
         if (other.GetComponent<PlayerReference>())
         {
-            _groundSpawner.RelocateTile();
-            Invoke("BackToPool", _timeToReturnToPool);
-            Invoke("RelocateObstacle", _timeToReturnToPool);
-            Invoke("RelocateCoins", _timeToReturnToPool);
-            _coinSpawner.DeactivateAllCoinsInTile();
-
+            BackToPoolAndSetUp();
         }
+
+    }
+
+    private void FindSpawnersAndPool()
+    {
+        _groundSpawner = FindObjectOfType<GroundSpawner>();
+        //_groundTilePool = FindObjectOfType<GroundTilePoolReference>().GetComponent<GenericObjectPool>();
+
+        _obstacleSpawner = GetComponent<ObstacleSpawner>();
+        _coinSpawner = GetComponent<CoinSpawner>();
+    }
+
+    private void BackToPoolAndSetUp()
+    {
+        _groundSpawner.RelocateTile();
+        Invoke("BackToPool", _timeToReturnToPool);
+        Invoke("RelocateObstacle", _timeToReturnToPool);
+        Invoke("RelocateCoins", _timeToReturnToPool);
+        _coinSpawner.DeactivateAllCoinsInTile();
     }
 
     private void BackToPool()
     {
-        _groundTilePool.ReturnObjectToPool(gameObject);
+        GenericObjectPool.Instance.ReturnObjectToPool(gameObject);
     }
 
     private void RelocateObstacle()
@@ -59,5 +69,13 @@ public sealed class GroundTile : MonoBehaviour
     private void RelocateCoins()
     {
         _coinSpawner.PlaceCoins();
+    }
+
+    private void DeactivateFirstObstacles()
+    {
+        if (Number < 3)
+        {
+            _obstacleSpawner.DeactivateObstacles();
+        }
     }
 }

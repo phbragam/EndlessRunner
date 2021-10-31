@@ -12,28 +12,14 @@ public sealed class CoinSpawner : MonoBehaviour
 
     private List<GameObject> _coinList = new List<GameObject>();
 
-    private void Awake()
+    public void Initialize()
     {
-        InstantiateCoins();
-        PlaceCoins();
+        Awake();
     }
 
-    private void InstantiateCoins()
-    {
-        for (int i = 0; i < _totalCoinsPerTile; i++)
-        {
-            GameObject temp = Instantiate(_coinPrefab, transform);
-            temp.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
-            temp.SetActive(false);
-            _coinList.Add(temp);
-        }
-    }
-
-    // adicionar object pooling
     public void PlaceCoins()
     {
         int coinsToActivate = Random.Range(0, _totalCoinsPerTile);
-        //int coinsToSpawn = 10;
 
         for (int i = 0; i < _coinList.Count; i++)
         {
@@ -49,21 +35,49 @@ public sealed class CoinSpawner : MonoBehaviour
                 {
                     case (0):
                         _coinList[i].transform.position = new Vector3(LeftLanePositionX, _coinList[i].transform.position.y, _coinList[i].transform.position.z);
-                        //Debug.Log(transform.position);
                         break;
                     case (1):
                         _coinList[i].transform.position = new Vector3(CenterLanePositionX, _coinList[i].transform.position.y, _coinList[i].transform.position.z);
-                        //Debug.Log(transform.position);
                         break;
                     case (2):
                         _coinList[i].transform.position = new Vector3(RightLanePositionX, _coinList[i].transform.position.y, _coinList[i].transform.position.z);
-                        //Debug.Log(transform.position);
                         break;
                 }
+
             }
-            //GameObject temp = Instantiate(_coinPrefab, transform);
-            //temp.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
+
         }
+    }
+
+    public void DeactivateAllCoinsInTile()
+    {
+
+        foreach (GameObject coin in _coinList)
+        {
+            coin.SetActive(false);
+        }
+    }
+
+    private void Awake()
+    {
+        InstantiateAndPlaceCoins();
+    }
+
+    private void InstantiateCoins()
+    {
+        for (int i = 0; i < _totalCoinsPerTile; i++)
+        {
+            GameObject temp = Instantiate(_coinPrefab, transform);
+            temp.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
+            temp.SetActive(false);
+            _coinList.Add(temp);
+        }
+    }
+
+    private void InstantiateAndPlaceCoins()
+    {
+        InstantiateCoins();
+        PlaceCoins();
     }
 
     private Vector3 GetRandomPointInCollider(Collider collider)
@@ -80,14 +94,5 @@ public sealed class CoinSpawner : MonoBehaviour
         }
 
         return point;
-    }
-
-    public void DeactivateAllCoinsInTile()
-    {
-
-        foreach (GameObject coin in _coinList)
-        {
-            coin.SetActive(false);
-        }
     }
 }

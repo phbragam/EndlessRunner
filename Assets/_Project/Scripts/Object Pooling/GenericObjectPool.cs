@@ -7,17 +7,11 @@ public sealed class GenericObjectPool : MonoBehaviour
     [SerializeField] private Queue<GameObject> _objectPool = new Queue<GameObject>();
     [SerializeField] private int _poolInitialSize;
 
-    private void Awake()
+    public static GenericObjectPool Instance;
+
+    public void Initialize()
     {
-
-        for (int i = 0; i < _poolInitialSize; i++)
-        {
-            GameObject obj = Instantiate(_objectPrefab);
-            _objectPool.Enqueue(obj);
-            obj.SetActive(false);
-
-        }
-
+        Awake();
     }
 
     public GameObject GetObjectInPool()
@@ -26,7 +20,7 @@ public sealed class GenericObjectPool : MonoBehaviour
         if (_objectPool.Count > 0)
         {
             //Debug.Log(_objectPool.Count);
-            GameObject obj = _objectPool.Dequeue();
+            GameObject obj = Instance._objectPool.Dequeue();
             obj.SetActive(true);
             return obj;
         }
@@ -40,8 +34,28 @@ public sealed class GenericObjectPool : MonoBehaviour
 
     public void ReturnObjectToPool(GameObject obj)
     {
-        _objectPool.Enqueue(obj);
+        Instance._objectPool.Enqueue(obj);
         obj.SetActive(false);
     }
 
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
+        Instance.InstatiatePoolElements();
+    }
+
+    private void InstatiatePoolElements()
+    {
+        for (int i = 0; i < _poolInitialSize; i++)
+        {
+            GameObject obj = Instantiate(_objectPrefab);
+            Instance._objectPool.Enqueue(obj);
+            obj.SetActive(false);
+        }
+    }
 }

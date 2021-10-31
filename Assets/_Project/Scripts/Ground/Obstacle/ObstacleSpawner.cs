@@ -11,10 +11,9 @@ public sealed class ObstacleSpawner : MonoBehaviour
     [SerializeField] private GameObject _obstacle;
     [SerializeField] private GameObject _tallObstacle;
 
-    private void Awake()
+    public void Initialize()
     {
-        GameObject obstacle = ChooseObstacle();
-        PlaceObstacle(obstacle);
+        Awake();
     }
 
     public GameObject ChooseObstacle()
@@ -66,5 +65,11 @@ public sealed class ObstacleSpawner : MonoBehaviour
     {
         _obstacle.SetActive(false);
         _tallObstacle.SetActive(false);
+    }
+
+    private void Awake()
+    {
+        GameObject obstacle = ChooseObstacle();
+        PlaceObstacle(obstacle);
     }
 }
