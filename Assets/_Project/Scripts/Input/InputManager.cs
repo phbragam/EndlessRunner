@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 [DefaultExecutionOrder(-1)]
 public sealed class InputManager : MonoBehaviour
@@ -29,11 +30,13 @@ public sealed class InputManager : MonoBehaviour
     private void OnEnable()
     {
         _touchControls.Enable();
+        TouchSimulation.Enable();
     }
 
     private void OnDisable()
     {
         _touchControls.Disable();
+        TouchSimulation.Disable();
     }
 
     void Start()

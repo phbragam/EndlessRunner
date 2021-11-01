@@ -30,7 +30,7 @@ public sealed class PlayerJump : MonoBehaviour
         SetUpJump();
     }
 
-    private void Jump(InputAction.CallbackContext context)
+    public void Jump()
     {
 
         float height = GetComponent<Collider>().bounds.size.y;
@@ -54,7 +54,7 @@ public sealed class PlayerJump : MonoBehaviour
     {
         _playerInputActions = new PlayerInputActions();
         _playerInputActions.Player.Jump.Enable();
-        _playerInputActions.Player.Jump.started += Jump;
+        //_playerInputActions.Player.Jump.started += Jump;
     }
 
     private void DisableJump()

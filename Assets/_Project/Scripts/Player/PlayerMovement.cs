@@ -51,7 +51,7 @@ public sealed class PlayerMovement : MonoBehaviour
         PlayerDieScript.OnPlayerDied -= DisableMovement;
     }
 
-    private void MoveLeft(InputAction.CallbackContext context)
+    public void MoveLeft()
     {
         switch (TargetLane)
         {
@@ -64,7 +64,7 @@ public sealed class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void MoveRight(InputAction.CallbackContext context)
+    public void MoveRight()
     {
         switch (TargetLane)
         {
@@ -142,7 +142,7 @@ public sealed class PlayerMovement : MonoBehaviour
         _playerInputActions = new PlayerInputActions();
         _playerInputActions.Player.Left.Enable();
         _playerInputActions.Player.Right.Enable();
-        _playerInputActions.Player.Left.performed += MoveLeft;
-        _playerInputActions.Player.Right.performed += MoveRight;
+        //_playerInputActions.Player.Left.performed += MoveLeft;
+        //_playerInputActions.Player.Right.performed += MoveRight;
     }
 }

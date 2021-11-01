@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class SwipeDetection : MonoBehaviour
 {
-    [SerializeField] private float minimumDistance = .2f;
+    [SerializeField] private float minimumDistance = .4f;
     [SerializeField] private float maximumTime = 1f;
     [SerializeField, Range(0f, 1f)] private float directionThreshold = .9f;
 
     private InputManager _inputManager;
+    private PlayerMovement _playerMovement;
+    private PlayerJump _playerJump;
 
     private Vector2 _startPosition;
     private float _startTime;
@@ -16,6 +18,8 @@ public class SwipeDetection : MonoBehaviour
     private void Awake()
     {
         _inputManager = InputManager.Instance;
+        _playerMovement = GetComponent<PlayerMovement>();
+        _playerJump = GetComponent<PlayerJump>();
     }
 
     private void OnEnable()
@@ -49,7 +53,7 @@ public class SwipeDetection : MonoBehaviour
             && (_endTime - _startTime) <= maximumTime)
         {
             //Debug.Log("Swipe detected");
-            Debug.DrawLine(_startPosition, _endPosition, Color.red, 5f);
+            //Debug.DrawLine(_startPosition, _endPosition, Color.red, 5f);
             Vector2 direction = (_endPosition - _startPosition).normalized;
             SwipeDirection(direction);
         }
@@ -60,14 +64,17 @@ public class SwipeDetection : MonoBehaviour
         if (Vector2.Dot(Vector2.up, direction) > directionThreshold)
         {
             Debug.Log("Swipe Up");
+            _playerJump.Jump();
         }
         else if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
         {
             Debug.Log("Swipe Left");
+            _playerMovement.MoveLeft();
         }
         else if (Vector2.Dot(Vector2.right, direction) > directionThreshold)
         {
             Debug.Log("Swipe Right");
+            _playerMovement.MoveRight();
         }
     }
 
