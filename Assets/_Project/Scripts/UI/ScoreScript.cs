@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public sealed class ScoreScript : MonoBehaviour
 {
+    public static event Action OnUpdateHighScore;
+
     [SerializeField] private Text _scoreText;
 
     [SerializeField] private GameObject _highScorePanel;
@@ -29,16 +32,12 @@ public sealed class ScoreScript : MonoBehaviour
 
     private void OnEnable()
     {
-        CoinObtained.OnCoinObtainedByPlayer += UpdateScore;
-        PlayerDieScript.OnPlayerDied += UpdateHighScore;
-        PlayerDieScript.OnPlayerDied += DelayedActivateAndSetupHighScoreScreen;
+        SubscribeInEvents();
     }
 
     private void OnDisable()
     {
-        CoinObtained.OnCoinObtainedByPlayer -= UpdateScore;
-        PlayerDieScript.OnPlayerDied -= UpdateHighScore;
-        PlayerDieScript.OnPlayerDied -= DelayedActivateAndSetupHighScoreScreen;
+        UnsubscribeInEvents();
     }
 
     private void UpdateScore()
@@ -53,6 +52,7 @@ public sealed class ScoreScript : MonoBehaviour
         if (_actualScore > _highScore.intValue)
         {
             _highScore.intValue = _actualScore;
+            OnUpdateHighScore?.Invoke();
         }
     }
 
@@ -66,5 +66,19 @@ public sealed class ScoreScript : MonoBehaviour
         _highScorePanel.SetActive(true);
         _gameOverScoreText.text = "YOUR SCORE: " + _actualScore;
         _highScoreText.text = "HIGH SCORE: " + _highScore.intValue;
+    }
+
+    private void SubscribeInEvents()
+    {
+        CoinObtained.OnCoinObtainedByPlayer += UpdateScore;
+        PlayerDieScript.OnPlayerDied += UpdateHighScore;
+        PlayerDieScript.OnPlayerDied += DelayedActivateAndSetupHighScoreScreen;
+    }
+
+    private void UnsubscribeInEvents()
+    {
+        CoinObtained.OnCoinObtainedByPlayer -= UpdateScore;
+        PlayerDieScript.OnPlayerDied -= UpdateHighScore;
+        PlayerDieScript.OnPlayerDied -= DelayedActivateAndSetupHighScoreScreen;
     }
 }

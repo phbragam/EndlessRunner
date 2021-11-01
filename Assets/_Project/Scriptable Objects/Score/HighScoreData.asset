@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29892ccf821089a45a5733fafc31c658, type: 3}
   m_Name: HighScoreData
   m_EditorClassIdentifier: 
-  defaultIntValue: 0
-  intValue: 0
+  intValue: 14
