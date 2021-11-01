@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class SwipeDetection : MonoBehaviour
 {
-    [SerializeField] private float minimumDistance = .4f;
-    [SerializeField] private float maximumTime = 1f;
-    [SerializeField, Range(0f, 1f)] private float directionThreshold = .9f;
+    [SerializeField] private float _minimumDistance = .4f;
+    [SerializeField] private float _maximumTime = 1f;
+    [SerializeField, Range(0f, 1f)] private float _directionThreshold = .9f;
 
     private InputManager _inputManager;
     private PlayerMovement _playerMovement;
@@ -49,8 +49,8 @@ public class SwipeDetection : MonoBehaviour
 
     private void DetectSwipe()
     {
-        if (Vector2.Distance(_startPosition, _endPosition) >= minimumDistance
-            && (_endTime - _startTime) <= maximumTime)
+        if (Vector2.Distance(_startPosition, _endPosition) >= _minimumDistance
+            && (_endTime - _startTime) <= _maximumTime)
         {
             //Debug.Log("Swipe detected");
             //Debug.DrawLine(_startPosition, _endPosition, Color.red, 5f);
@@ -61,22 +61,20 @@ public class SwipeDetection : MonoBehaviour
 
     private void SwipeDirection(Vector2 direction)
     {
-        if (Vector2.Dot(Vector2.up, direction) > directionThreshold)
+        if (Vector2.Dot(Vector2.up, direction) > _directionThreshold)
         {
             Debug.Log("Swipe Up");
             _playerJump.Jump();
         }
-        else if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
+        else if (Vector2.Dot(Vector2.left, direction) > _directionThreshold)
         {
             Debug.Log("Swipe Left");
             _playerMovement.MoveLeft();
         }
-        else if (Vector2.Dot(Vector2.right, direction) > directionThreshold)
+        else if (Vector2.Dot(Vector2.right, direction) > _directionThreshold)
         {
             Debug.Log("Swipe Right");
             _playerMovement.MoveRight();
         }
     }
-
-
 }

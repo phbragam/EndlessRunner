@@ -8,7 +8,6 @@ public sealed class PlayerMovement : MonoBehaviour
     [SerializeField] private float _maxSpeed;
 
     private PlayerMovement _playerMovement;
-    private PlayerInputActions _playerInputActions;
     private Lane TargetLane;
 
     public void Initialize()
@@ -124,25 +123,13 @@ public sealed class PlayerMovement : MonoBehaviour
 
     private void DisableMovement()
     {
-        _playerInputActions.Player.Left.Disable();
-        _playerInputActions.Player.Right.Disable();
         _playerMovement.enabled = false;
     }
 
     private void SetUpMovement()
     {
-        InitializePlayerInputActions();
-
         _playerMovement = this;
         TargetLane = Lane.Center;
     }
 
-    private void InitializePlayerInputActions()
-    {
-        _playerInputActions = new PlayerInputActions();
-        _playerInputActions.Player.Left.Enable();
-        _playerInputActions.Player.Right.Enable();
-        //_playerInputActions.Player.Left.performed += MoveLeft;
-        //_playerInputActions.Player.Right.performed += MoveRight;
-    }
 }

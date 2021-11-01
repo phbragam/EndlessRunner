@@ -8,11 +8,6 @@ public sealed class InputManager : MonoBehaviour
 {
     public event Action<Vector2, float> OnStartTouch;
     public event Action<Vector2, float> OnEndTouch;
-    //public delegate void StartTouch(Vector2 position, float time);
-    // precisa do event?
-    //public event StartTouch OnStartTouch;
-    //public delegate void EndTouch(Vector2 position, float time);
-    //public event EndTouch OnEndTouch;
 
     public static InputManager Instance;
     private TouchControls _touchControls;
@@ -29,12 +24,14 @@ public sealed class InputManager : MonoBehaviour
 
     private void OnEnable()
     {
+        PlayerDieScript.OnPlayerDied += DisableTouch;
         _touchControls.Enable();
         TouchSimulation.Enable();
     }
 
     private void OnDisable()
     {
+        PlayerDieScript.OnPlayerDied -= DisableTouch;
         _touchControls.Disable();
         TouchSimulation.Disable();
     }
@@ -55,7 +52,11 @@ public sealed class InputManager : MonoBehaviour
         OnEndTouch?.Invoke(_touchControls.Touch.PrimaryPosition.ReadValue<Vector2>(), (float)context.time);
     }
 
-
+    private void DisableTouch()
+    {
+        _touchControls.Disable();
+        TouchSimulation.Disable();
+    }
 
 
 }
