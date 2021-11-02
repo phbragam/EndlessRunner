@@ -8,24 +8,19 @@ public sealed class CameraFollow : MonoBehaviour
 
     public void Initialize()
     {
-        Start();
+        _player = FindObjectOfType<PlayerReference>().gameObject.transform;
+        _offset = transform.position - _player.position;
     }
 
     private void Start()
     {
-        PlaceAndSetUpOffset();
+        Initialize();
     }
 
     private void LateUpdate()
     {
         FollowPlayer();
     }
-
-    private void PlaceAndSetUpOffset()
-    {
-        _player = FindObjectOfType<PlayerReference>().gameObject.transform;
-        _offset = transform.position - _player.position;
-    } 
 
     private void FollowPlayer()
     {

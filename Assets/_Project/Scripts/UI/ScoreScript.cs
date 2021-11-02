@@ -17,17 +17,12 @@ public sealed class ScoreScript : MonoBehaviour
 
     public void Initialize()
     {
-
+        _highScorePanel.SetActive(false);
     }
 
     private void Awake()
     {
-        _highScorePanel.SetActive(false);
-    }
-
-    private void Start()
-    {
-
+        Initialize();
     }
 
     private void OnEnable()

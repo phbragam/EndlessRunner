@@ -12,7 +12,8 @@ public sealed class PlayerJump : MonoBehaviour
 
     public void Initialize()
     {
-
+        InitializeRigidBody();
+        InitializeAnimator();
     }
 
     private void OnEnable()
@@ -28,8 +29,7 @@ public sealed class PlayerJump : MonoBehaviour
 
     private void Awake()
     {
-        InitializeRigidBody();
-        InitializeAnimator();
+        Initialize();
     }
 
     public void Jump()

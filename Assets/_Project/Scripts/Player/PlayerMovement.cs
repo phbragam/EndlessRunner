@@ -12,7 +12,8 @@ public sealed class PlayerMovement : MonoBehaviour
 
     public void Initialize()
     {
-        
+        _playerMovement = this;
+        TargetLane = Lane.Center;
     }
 
     public bool IncreaseSpeed(float speedIncreasePerPoint)
@@ -31,7 +32,7 @@ public sealed class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        SetUpMovement();
+        Initialize();
     }
 
     private void Update()
@@ -120,16 +121,8 @@ public sealed class PlayerMovement : MonoBehaviour
         transform.Translate(moveVector * Time.fixedDeltaTime);
     }
 
-
     private void DisableMovement()
     {
         _playerMovement.enabled = false;
     }
-
-    private void SetUpMovement()
-    {
-        _playerMovement = this;
-        TargetLane = Lane.Center;
-    }
-
 }

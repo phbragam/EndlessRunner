@@ -6,14 +6,15 @@ public class GameSaveManager : MonoBehaviour
 {
     [SerializeField] private IntValue _highScoreData;
 
-    private void Awake()
+    public void Initialize()
     {
-        
+        LoadHighScore();
+        ScoreScript.OnUpdateHighScore += SaveHighScoreData;
     }
 
     private void OnEnable()
     {
-        InitializeSaveManager();
+        Initialize();
     }
 
 
@@ -43,11 +44,5 @@ public class GameSaveManager : MonoBehaviour
             JsonUtility.FromJsonOverwrite((string)binary.Deserialize(stream), _highScoreData);
             stream.Close();
         }
-    }
-
-    private void InitializeSaveManager()
-    {
-        LoadHighScore();
-        ScoreScript.OnUpdateHighScore += SaveHighScoreData;
     }
 }

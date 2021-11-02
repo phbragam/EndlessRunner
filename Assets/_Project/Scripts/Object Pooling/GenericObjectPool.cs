@@ -11,7 +11,16 @@ public sealed class GenericObjectPool : MonoBehaviour
 
     public void Initialize()
     {
-        Awake();
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        Instance.InstatiatePoolElements();
     }
 
     public GameObject GetObjectInPool()
@@ -40,16 +49,7 @@ public sealed class GenericObjectPool : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-        Instance.InstatiatePoolElements();
+        Initialize();
     }
 
     private void InstatiatePoolElements()

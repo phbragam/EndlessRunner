@@ -14,7 +14,8 @@ public sealed class CoinSpawner : MonoBehaviour
 
     public void Initialize()
     {
-        Awake();
+        InstantiateCoins();
+        PlaceCoins();
     }
 
     public void PlaceCoins()
@@ -60,7 +61,7 @@ public sealed class CoinSpawner : MonoBehaviour
 
     private void Awake()
     {
-        InstantiateAndPlaceCoins();
+        Initialize();
     }
 
     private void InstantiateCoins()
@@ -76,8 +77,7 @@ public sealed class CoinSpawner : MonoBehaviour
 
     private void InstantiateAndPlaceCoins()
     {
-        InstantiateCoins();
-        PlaceCoins();
+        
     }
 
     private Vector3 GetRandomPointInCollider(Collider collider)

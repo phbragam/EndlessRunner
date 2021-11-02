@@ -6,10 +6,6 @@ public sealed class GroundSpawner : MonoBehaviour
 
     private Vector3 _nextSpawnPoint;
 
-    public void Initialize()
-    {
-    }
-
     public void RelocateTile(int number)
     {
         GameObject groundTile = GenericObjectPool.Instance.GetObjectInPool();
@@ -31,6 +27,11 @@ public sealed class GroundSpawner : MonoBehaviour
     }
 
     private void Start()
+    {
+        InitialPooling();
+    }
+
+    private void InitialPooling()
     {
         for (int i = 0; i < _initialNumberOfTiles; i++)
         {

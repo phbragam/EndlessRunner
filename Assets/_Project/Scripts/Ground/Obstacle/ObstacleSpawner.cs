@@ -13,7 +13,8 @@ public sealed class ObstacleSpawner : MonoBehaviour
 
     public void Initialize()
     {
-        Awake();
+        GameObject obstacle = ChooseObstacle();
+        PlaceObstacle(obstacle);
     }
 
     public GameObject ChooseObstacle()
@@ -69,7 +70,6 @@ public sealed class ObstacleSpawner : MonoBehaviour
 
     private void Awake()
     {
-        GameObject obstacle = ChooseObstacle();
-        PlaceObstacle(obstacle);
+        Initialize();
     }
 }

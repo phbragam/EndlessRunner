@@ -12,7 +12,7 @@ public sealed class InputManager : MonoBehaviour
     public static InputManager Instance;
     private TouchControls _touchControls;
 
-    private void Awake()
+    public void Initialize()
     {
         if (Instance == null)
         {
@@ -20,6 +20,11 @@ public sealed class InputManager : MonoBehaviour
         }
 
         _touchControls = new TouchControls();
+    }
+
+    private void Awake()
+    {
+        Initialize();
     }
 
     private void OnEnable()
