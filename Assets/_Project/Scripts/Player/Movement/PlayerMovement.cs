@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +6,8 @@ public sealed class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _laneDistance = 3.3f;
     [SerializeField] private float _speed;
+    [SerializeField] private float _baseSpeed;
+    [SerializeField] private float _minSpeed;
     [SerializeField] private float _maxSpeed;
 
     private PlayerMovement _playerMovement;
@@ -30,9 +33,30 @@ public sealed class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void SlowSpeed(float speedDecrease, float time)
+    {
+
+        if (_speed - speedDecrease > _minSpeed)
+        {
+            _speed -= speedDecrease;
+            StartCoroutine(NormalSpeed(speedDecrease, time));
+        }
+    }
+
+    public IEnumerator NormalSpeed(float speedDecreased, float time)
+    {
+        yield return new WaitForSeconds(time);
+        _speed += speedDecreased;
+    }
+
     private void Awake()
     {
         Initialize();
+    }
+
+    private void Start()
+    {
+        _speed = _baseSpeed;
     }
 
     private void Update()

@@ -1,9 +1,12 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public sealed class PlayerJump : MonoBehaviour
 {
-    [SerializeField] private float jumpForce;
+    [SerializeField] private float _jumpForce;
+    [SerializeField] private float _baseJumpForce;
+    [SerializeField] private float _maxJumpForce;
     [SerializeField] private LayerMask _groundMask;
 
     private Rigidbody _rb;
@@ -32,6 +35,11 @@ public sealed class PlayerJump : MonoBehaviour
         Initialize();
     }
 
+    private void Start()
+    {
+        _jumpForce = _baseJumpForce;
+    }
+
     public void Jump()
     {
 
@@ -43,9 +51,25 @@ public sealed class PlayerJump : MonoBehaviour
         if (isGrounded)
         {
             _anim.SetTrigger("Jump");
-            _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
         }
 
+    }
+
+    public void IncreaseJumpForce(float jumpIncrease, float time)
+    {
+
+        if (_jumpForce < _maxJumpForce)
+        {
+            _jumpForce += jumpIncrease;
+            StartCoroutine(NormalJumpForce(jumpIncrease, time));
+        }
+    }
+
+    public IEnumerator NormalJumpForce(float jumpIncreased, float time)
+    {
+        yield return new WaitForSeconds(time);
+        _jumpForce -= jumpIncreased;
     }
 
     private void InitializeRigidBody()
@@ -62,6 +86,4 @@ public sealed class PlayerJump : MonoBehaviour
     {
         _anim.SetTrigger("Dead");
     }
-
-
 }

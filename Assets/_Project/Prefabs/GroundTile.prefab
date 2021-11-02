@@ -235,8 +235,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9943bb691a57f4da92851e604acb70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinPrefab: {fileID: 6081129526358317644, guid: 83227c67c0b0a75429baf5a9ffc55b60, type: 3}
+  _coinPrefab: {fileID: 3201883803912596554, guid: 4593b6cb32a3f5d4b9475df9108755fc, type: 3}
+  _slowSpeedPowerUpPrefab: {fileID: 7799227018146438141, guid: 44c61101ca7d4624c9783b8f29af7593, type: 3}
+  _increaseJumpPowerUpPrefab: {fileID: 200052897481350783, guid: 059f6380fc4aa064e9976fc1b8eefa85, type: 3}
   _totalCoinsPerTile: 5
+  _slowSpeedInstantiateChance: 15
+  _increaseJumpInstantiateChance: 20
 --- !u!114 &650183725615470141
 MonoBehaviour:
   m_ObjectHideFlags: 0

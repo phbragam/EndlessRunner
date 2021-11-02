@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 
-public sealed class CoinObtained : MonoBehaviour
+public class SpeedSlowObtained : CollectableObtained
 {
-    //transformar em um delegate ou evento generico e fazer diferentes para os powerups
-    public static event Action OnCoinObtainedByPlayer;
+    public static CollectableObtainedHandler OnSpeedSlowObtainedByPlayer;
+    //public static event Action OnCoinObtainedByPlayer;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,7 +19,7 @@ public sealed class CoinObtained : MonoBehaviour
             return;
         }
 
-        OnCoinObtainedByPlayer?.Invoke();
+        OnSpeedSlowObtainedByPlayer?.Invoke();
 
         gameObject.SetActive(false);
     }

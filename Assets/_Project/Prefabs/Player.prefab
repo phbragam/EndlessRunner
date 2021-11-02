@@ -16862,11 +16862,13 @@ GameObject:
   - component: {fileID: 1983486526274562298}
   - component: {fileID: 7346433020710072428}
   - component: {fileID: 7346433020710072402}
-  - component: {fileID: 7346433020710072429}
   - component: {fileID: 7346433020710072401}
+  - component: {fileID: 7346433020710072404}
   - component: {fileID: 7346433020710072406}
   - component: {fileID: 7346433020710072407}
-  - component: {fileID: 7346433020710072404}
+  - component: {fileID: 2369157832629340105}
+  - component: {fileID: 7884460770952171175}
+  - component: {fileID: 7346433020710072429}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -16939,18 +16941,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &7346433020710072429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8216243290710873149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c07c4387a2114df4e8ac500dc06615dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7346433020710072401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16963,6 +16953,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e571e49e2510544869824a208d7aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7346433020710072404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8216243290710873149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b45ec91cc0efea4fbcdd5383ddb67f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _laneDistance: 3.3
+  _speed: 5
+  _minSpeed: 0
+  _maxSpeed: 20
 --- !u!114 &7346433020710072406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16975,7 +16981,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8afd6822e3227444bab86a8787d92caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 15
+  _jumpForce: 15
+  _maxJumpForce: 30
   _groundMask:
     serializedVersion: 2
     m_Bits: 64
@@ -16992,7 +16999,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedIncreasePerPoint: 0.3
---- !u!114 &7346433020710072404
+--- !u!114 &2369157832629340105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8216243290710873149}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f499d461c69125141ad20e7119ecb335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _jumpIncrease: 0
+  _buffTime: 0
+--- !u!114 &7884460770952171175
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17001,12 +17022,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 8216243290710873149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b45ec91cc0efea4fbcdd5383ddb67f7, type: 3}
+  m_Script: {fileID: 11500000, guid: e2577ae9e34bdc14c91110501048dcc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _laneDistance: 3.3
-  _speed: 5
-  _maxSpeed: 20
+  _speedDecrease: 10
+  _buffTime: 10
+--- !u!114 &7346433020710072429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8216243290710873149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07c4387a2114df4e8ac500dc06615dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8274811906447322235
 GameObject:
   m_ObjectHideFlags: 0

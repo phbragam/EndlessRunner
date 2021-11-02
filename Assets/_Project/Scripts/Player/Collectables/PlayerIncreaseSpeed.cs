@@ -3,12 +3,14 @@ using UnityEngine;
 public sealed class PlayerIncreaseSpeed : MonoBehaviour
 {
     [SerializeField] private float _speedIncreasePerPoint;
+    [SerializeField] private float _baseSpeedIncreasePerPoint;
 
     private PlayerMovement _playerMovement;
 
     public void Initialize()
     {
         _playerMovement = GetComponent<PlayerMovement>();
+        _speedIncreasePerPoint = _baseSpeedIncreasePerPoint;
     }
 
     private void Awake()
@@ -32,7 +34,12 @@ public sealed class PlayerIncreaseSpeed : MonoBehaviour
 
         if (!increased)
         {
-            CoinObtained.OnCoinObtainedByPlayer -= IncreaseSpeed;
+            _speedIncreasePerPoint = 0f;
+            //CoinObtained.OnCoinObtainedByPlayer -= IncreaseSpeed;
+        }
+        else
+        {
+            _speedIncreasePerPoint = _baseSpeedIncreasePerPoint;
         }
     }
 }

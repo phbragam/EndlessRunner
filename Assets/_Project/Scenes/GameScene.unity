@@ -913,6 +913,20 @@ MonoBehaviour:
   _minimumDistance: 0.4
   _maximumTime: 1
   _directionThreshold: 0.9
+--- !u!114 &1517779025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517779013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2577ae9e34bdc14c91110501048dcc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speedDecrease: 0
+  _buffTime: 0
 --- !u!1 &1601397377
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,9 +1056,61 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369157832629340105, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
+      propertyPath: _buffTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369157832629340105, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369157832629340105, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
+      propertyPath: _jumpIncrease
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346433020710072404, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
+      propertyPath: _minSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346433020710072404, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
+      propertyPath: _baseSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346433020710072406, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
+      propertyPath: jumpForce
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346433020710072406, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
+      propertyPath: _jumpForce
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346433020710072406, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
+      propertyPath: _maxJumpForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346433020710072406, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
+      propertyPath: _baseJumpForce
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 7346433020710072407, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346433020710072407, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
+      propertyPath: _speedIncreasePerPoint
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346433020710072407, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
+      propertyPath: _baseSpeedIncreasePerPoint
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7884460770952171175, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
+      propertyPath: _buffTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7884460770952171175, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
+      propertyPath: _speedDecrease
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7912295599400132971, guid: 2df7e35abd3499d4d99a8a439bf60c63, type: 3}
       propertyPath: m_RootOrder
