@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+[DefaultExecutionOrder(-1)]
 public sealed class AudioManagerScript : MonoBehaviour
 {
     public Sound[] sounds;
@@ -13,6 +14,10 @@ public sealed class AudioManagerScript : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
 
         foreach (Sound s in sounds)
