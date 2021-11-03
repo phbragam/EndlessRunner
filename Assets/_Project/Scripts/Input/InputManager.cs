@@ -38,7 +38,7 @@ public sealed class InputManager : MonoBehaviour
     {
         PlayerDieScript.OnPlayerDied -= DisableTouch;
         _touchControls.Disable();
-        TouchSimulation.Disable();
+        //TouchSimulation.Disable();
     }
 
     void Start()

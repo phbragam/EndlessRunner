@@ -46,6 +46,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UI",
+            "id": "1e9108e4-b43c-45c9-a592-ebc123084ba1",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "66ff1509-f47c-492d-a158-3e32bc285958",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d38f121f-805c-4b16-a394-55609efc8825",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

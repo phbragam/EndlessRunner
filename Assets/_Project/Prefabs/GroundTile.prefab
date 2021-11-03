@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a2c10708228404499311bf846743a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToReturnToPool: 1
+  _timeToReturnToPool: 2
 --- !u!114 &4839276999516489697
 MonoBehaviour:
   m_ObjectHideFlags: 0

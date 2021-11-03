@@ -1,0 +1,27 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public sealed class RetryButtonScript : MonoBehaviour
+{
+    private Button _button;
+
+    private void Initialize()
+    {
+        _button = GetComponent<Button>();
+        _button.onClick.AddListener(Load);
+    }
+
+    private void Awake()
+    {
+        Initialize();
+    }
+
+    private void Load()
+    {
+        Debug.Log("load");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+
+}

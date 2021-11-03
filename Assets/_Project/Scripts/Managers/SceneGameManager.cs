@@ -15,7 +15,7 @@ public sealed class SceneGameManager : MonoBehaviour
 
     private void DelayedReloadScene()
     {
-        Invoke("Load", 5f);
+        //Invoke("Load", 5f);
     }
 
     private void Load()
