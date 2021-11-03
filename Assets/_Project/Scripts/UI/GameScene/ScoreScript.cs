@@ -49,6 +49,7 @@ public sealed class ScoreScript : MonoBehaviour
             _highScore.intValue = _actualScore;
             OnUpdateHighScore?.Invoke();
         }
+
     }
 
     private void DelayedActivateAndSetupHighScoreScreen()

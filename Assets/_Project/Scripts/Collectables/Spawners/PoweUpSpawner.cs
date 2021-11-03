@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PoweUpSpawner : MonoBehaviour
@@ -19,7 +17,12 @@ public class PoweUpSpawner : MonoBehaviour
         PlacePoweUp(powerUp);
     }
 
-    public GameObject ChoosePowerUp()
+    private void Awake()
+    {
+        Initialize();
+    }
+
+    private GameObject ChoosePowerUp()
     {
         _powerUpChance = Random.Range(0f, 100f);
 
@@ -48,7 +51,7 @@ public class PoweUpSpawner : MonoBehaviour
         }
     }
 
-    public void PlacePoweUp(GameObject powerUp)
+    private void PlacePoweUp(GameObject powerUp)
     {
         int obstacleSpawnIndex = Random.Range(0, 3);
         Vector3 spawnPoint = new Vector3();
@@ -72,14 +75,9 @@ public class PoweUpSpawner : MonoBehaviour
         powerUp.transform.position = spawnPoint;
     }
 
-    public void DeactivatePowerUps()
+    private void DeactivatePowerUps()
     {
         _slowSpeedPowerUp.SetActive(false);
         _increaseJumpPowerUp.SetActive(false);
-    }
-
-    private void Awake()
-    {
-        Initialize();
     }
 }

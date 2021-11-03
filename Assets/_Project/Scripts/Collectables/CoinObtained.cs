@@ -3,7 +3,6 @@ using UnityEngine;
 public sealed class CoinObtained : CollectableObtained
 {
     public static CollectableObtainedHandler OnCoinObtainedByPlayer;
-    //public static event Action OnCoinObtainedByPlayer;
 
     private void OnTriggerEnter(Collider other)
     {

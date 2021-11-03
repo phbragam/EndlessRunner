@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.EnhancedTouch;
 
 [DefaultExecutionOrder(-1)]
 public sealed class InputManager : MonoBehaviour
@@ -31,14 +30,12 @@ public sealed class InputManager : MonoBehaviour
     {
         PlayerDieScript.OnPlayerDied += DisableTouch;
         _touchControls.Enable();
-        TouchSimulation.Enable();
     }
 
     private void OnDisable()
     {
         PlayerDieScript.OnPlayerDied -= DisableTouch;
         _touchControls.Disable();
-        //TouchSimulation.Disable();
     }
 
     void Start()
@@ -60,7 +57,6 @@ public sealed class InputManager : MonoBehaviour
     private void DisableTouch()
     {
         _touchControls.Disable();
-        TouchSimulation.Disable();
     }
 
 

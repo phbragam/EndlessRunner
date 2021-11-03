@@ -5,11 +5,6 @@ public sealed class PlayerDieScript : MonoBehaviour
 {
     public static event Action OnPlayerDied;
 
-    private void Update()
-    {
-        InvokeDeathEventOnFall();
-    }
-
     private void OnEnable()
     {
         OnPlayerDied += PlayDeathSound;
@@ -23,16 +18,6 @@ public sealed class PlayerDieScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         InvokeDeathEventOnCollision(collision);
-    }
-
-    private void InvokeDeathEventOnFall()
-    {
-
-        if (transform.position.y <= -5)
-        {
-            OnPlayerDied?.Invoke();
-        }
-
     }
 
     private void InvokeDeathEventOnCollision(Collision collision)

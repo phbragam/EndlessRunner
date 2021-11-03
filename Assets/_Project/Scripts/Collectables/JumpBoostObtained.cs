@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class JumpBoostObtained : CollectableObtained
+public sealed class JumpBoostObtained : CollectableObtained
 {
     public static CollectableObtainedHandler OnJumpBoostObtainedByPlayer;
-    //public static event Action OnCoinObtainedByPlayer;
 
     private void OnTriggerEnter(Collider other)
     {

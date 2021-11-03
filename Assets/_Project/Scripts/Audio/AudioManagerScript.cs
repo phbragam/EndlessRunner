@@ -8,14 +8,12 @@ public sealed class AudioManagerScript : MonoBehaviour
 
     public void Initialize()
     {
+
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
-
-
 
         foreach (Sound s in sounds)
         {
@@ -35,11 +33,13 @@ public sealed class AudioManagerScript : MonoBehaviour
     public void Play(string name)
     {
         Sound s = Array.Find(Instance.sounds, sound => sound.name == name);
+
         if (s == null)
         {
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
+
         s.source.Play();
     }
 }

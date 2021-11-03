@@ -2,13 +2,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 public sealed class PlayButtonScript : MonoBehaviour
 {
     [SerializeField] GameObject _loadingPanel;
 
     private Button _button;
-
 
     private void Initialize()
     {

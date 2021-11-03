@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public sealed class PlayerMovement : MonoBehaviour
 {
@@ -31,6 +30,7 @@ public sealed class PlayerMovement : MonoBehaviour
         {
             return false;
         }
+
     }
 
     public void SlowSpeed(float speedDecrease, float time)
@@ -41,6 +41,7 @@ public sealed class PlayerMovement : MonoBehaviour
             _speed -= speedDecrease;
             StartCoroutine(NormalSpeed(speedDecrease, time));
         }
+
     }
 
     public IEnumerator NormalSpeed(float speedDecreased, float time)

@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class SpeedSlowObtained : CollectableObtained
+public sealed class SpeedSlowObtained : CollectableObtained
 {
     public static CollectableObtainedHandler OnSpeedSlowObtainedByPlayer;
-    //public static event Action OnCoinObtainedByPlayer;
 
     private void OnTriggerEnter(Collider other)
     {

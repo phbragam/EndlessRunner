@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public sealed class PlayerJump : MonoBehaviour
 {
@@ -19,30 +18,8 @@ public sealed class PlayerJump : MonoBehaviour
         InitializeAnimator();
     }
 
-    private void OnEnable()
-    {
-        PlayerDieScript.OnPlayerDied += SetDeathAnimation;
-    }
-
-    private void OnDisable()
-    {
-        PlayerDieScript.OnPlayerDied -= SetDeathAnimation;
-    }
-
-
-    private void Awake()
-    {
-        Initialize();
-    }
-
-    private void Start()
-    {
-        _jumpForce = _baseJumpForce;
-    }
-
     public void Jump()
     {
-
         float height = GetComponent<Collider>().bounds.size.y;
         bool isGrounded = Physics.Raycast(transform.position + Vector3.up, Vector3.down, (height / 2) + .1f, _groundMask);
 
@@ -64,12 +41,33 @@ public sealed class PlayerJump : MonoBehaviour
             _jumpForce += jumpIncrease;
             StartCoroutine(NormalJumpForce(jumpIncrease, time));
         }
+
     }
 
     public IEnumerator NormalJumpForce(float jumpIncreased, float time)
     {
         yield return new WaitForSeconds(time);
         _jumpForce -= jumpIncreased;
+    }
+
+    private void Awake()
+    {
+        Initialize();
+    }
+
+    private void Start()
+    {
+        _jumpForce = _baseJumpForce;
+    }
+
+    private void OnEnable()
+    {
+        PlayerDieScript.OnPlayerDied += SetDeathAnimation;
+    }
+
+    private void OnDisable()
+    {
+        PlayerDieScript.OnPlayerDied -= SetDeathAnimation;
     }
 
     private void InitializeRigidBody()

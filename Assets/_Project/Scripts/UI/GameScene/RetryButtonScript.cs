@@ -9,7 +9,7 @@ public sealed class RetryButtonScript : MonoBehaviour
     private void Initialize()
     {
         _button = GetComponent<Button>();
-        _button.onClick.AddListener(Load);
+        _button.onClick.AddListener(ReLoad);
     }
 
     private void Awake()
@@ -17,7 +17,7 @@ public sealed class RetryButtonScript : MonoBehaviour
         Initialize();
     }
 
-    private void Load()
+    private void ReLoad()
     {
         AudioManagerScript.Instance.Play("Botao");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

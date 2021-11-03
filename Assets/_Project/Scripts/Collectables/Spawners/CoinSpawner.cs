@@ -32,7 +32,6 @@ public sealed class CoinSpawner : MonoBehaviour
 
             if (i <= coinsToActivate)
             {
-                //int randomCoinIndex = Random.Range(0, _coinList.Count);
                 _coinList[i].SetActive(true);
 
                 int numberOfLanes = 3;
@@ -97,11 +96,6 @@ public sealed class CoinSpawner : MonoBehaviour
         temp.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
         temp.SetActive(false);
         _coinList.Add(temp);
-    }
-
-    private void InstantiateAndPlaceCoins()
-    {
-
     }
 
     private void ShuffleList(List<GameObject> list)
