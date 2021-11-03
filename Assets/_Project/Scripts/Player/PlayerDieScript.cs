@@ -10,6 +10,16 @@ public sealed class PlayerDieScript : MonoBehaviour
         InvokeDeathEventOnFall();
     }
 
+    private void OnEnable()
+    {
+        OnPlayerDied += PlayDeathSound;
+    }
+
+    private void OnDisable()
+    {
+        OnPlayerDied -= PlayDeathSound;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         InvokeDeathEventOnCollision(collision);
@@ -33,5 +43,10 @@ public sealed class PlayerDieScript : MonoBehaviour
             OnPlayerDied?.Invoke();
         }
 
+    }
+
+    private void PlayDeathSound()
+    {
+        AudioManagerScript.Instance.Play("Morte");
     }
 }

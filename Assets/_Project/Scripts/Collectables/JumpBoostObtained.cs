@@ -23,4 +23,19 @@ public class JumpBoostObtained : CollectableObtained
 
         gameObject.SetActive(false);
     }
+
+    private void OnEnable()
+    {
+        OnJumpBoostObtainedByPlayer += PlayJumpBoostSound;
+    }
+
+    private void OnDisable()
+    {
+        OnJumpBoostObtainedByPlayer -= PlayJumpBoostSound;
+    }
+
+    private void PlayJumpBoostSound()
+    {
+        AudioManagerScript.Instance.Play("JumpBoost");
+    }
 }

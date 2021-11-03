@@ -19,9 +19,7 @@ public sealed class RetryButtonScript : MonoBehaviour
 
     private void Load()
     {
-        Debug.Log("load");
+        AudioManagerScript.Instance.Play("Botao");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
-
 }

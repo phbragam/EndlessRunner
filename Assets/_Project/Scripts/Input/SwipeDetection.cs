@@ -67,14 +67,17 @@ public sealed class SwipeDetection : MonoBehaviour
         if (Vector2.Dot(Vector2.up, direction) > _directionThreshold)
         {
             _playerJump.Jump();
+            AudioManagerScript.Instance.Play("Pulo");
         }
         else if (Vector2.Dot(Vector2.left, direction) > _directionThreshold)
         {
             _playerMovement.MoveLeft();
+            AudioManagerScript.Instance.Play("Pulo");
         }
         else if (Vector2.Dot(Vector2.right, direction) > _directionThreshold)
         {
             _playerMovement.MoveRight();
+            AudioManagerScript.Instance.Play("Pulo");
         }
     }
 }

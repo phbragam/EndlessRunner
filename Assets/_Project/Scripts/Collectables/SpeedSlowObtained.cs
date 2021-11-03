@@ -23,4 +23,19 @@ public class SpeedSlowObtained : CollectableObtained
 
         gameObject.SetActive(false);
     }
+
+    private void OnEnable()
+    {
+        OnSpeedSlowObtainedByPlayer += PlaySpeedSlowSound;
+    }
+
+    private void OnDisable()
+    {
+        OnSpeedSlowObtainedByPlayer -= PlaySpeedSlowSound;
+    }
+
+    private void PlaySpeedSlowSound()
+    {
+        AudioManagerScript.Instance.Play("SpeedSlow");
+    }
 }

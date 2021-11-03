@@ -23,4 +23,19 @@ public sealed class CoinObtained : CollectableObtained
 
         gameObject.SetActive(false);
     }
+
+    private void OnEnable()
+    {
+        OnCoinObtainedByPlayer += PlayCoinSound;
+    }
+
+    private void OnDisable()
+    {
+        OnCoinObtainedByPlayer -= PlayCoinSound;
+    }
+
+    private void PlayCoinSound()
+    {
+        AudioManagerScript.Instance.Play("Coin");
+    }
 }
