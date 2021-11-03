@@ -8,7 +8,7 @@ Endless Runner game developed for Android devices
 
 Developed with Unity 2020.3.21f1 
 
-### Unity Version
+### Credits
 
 Made by Pedro Henrique Braga Moraes
 
